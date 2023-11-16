@@ -1,0 +1,32 @@
+/* SeatReservation.css */
+
+.seat-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.seat-row {
+  display: flex;
+}
+
+.seat {
+  width: 50px;
+  height: 50px;
+  margin: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reserved {
+  background-color: rgb(109, 109, 109);
+  color: white;
+}
+
+.available {
+  background-color: rgb(229, 229, 229);
+  color: white;
+}
