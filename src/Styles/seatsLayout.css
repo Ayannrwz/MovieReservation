@@ -1,4 +1,7 @@
 /* SeatReservation.css */
+.seats-layout-container{
+  margin-top: 80px;
+}
 
 .seat-grid {
   display: flex;

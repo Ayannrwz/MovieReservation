@@ -8,6 +8,12 @@
 
 
 /** Movie Card **/
+.movies-section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .movie-card{
   min-width: 80px;
   min-height: 100px;

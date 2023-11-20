@@ -14,7 +14,7 @@ function Movies() {
 
   return (
     <Stack>
-      <div className="filter-section">
+      <div className="filter-section text-center">
         <Row>
           <Col>
             <ReactDatePicker
@@ -26,7 +26,7 @@ function Movies() {
         </Row>
       </div>
       <div className="movies-section">
-        <Row>
+        <Row className="justify-content-center"> 
         {movies.map((movie, index) => (
             <MovieCard key={index} movieData={movie} />
         ))}

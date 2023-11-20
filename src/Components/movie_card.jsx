@@ -9,7 +9,7 @@ function MovieCard({ movieData }) {
   };
 
   return (
-    <Col md={3} onClick={handleCardClick}>
+    <Col className="d-flex justify-content-center" md={3} onClick={handleCardClick}>
       <Stack className="movie-card">
         <h1>{movieData.title}</h1>
         <p>{movieData.start}</p>
