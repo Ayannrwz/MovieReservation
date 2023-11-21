@@ -12,7 +12,7 @@ const toggleReservation = (row, col) => {
   };
 
   const columnID = getColumnID(col);
-  const rowColDataObj = {rowCol, id: `${columnID}${row}` };
+  const rowColDataObj = {rowCol, id: `${columnID}${row+1}` };
 
   rowColData(rowColDataObj);
     // const newSeats = [...seatData];

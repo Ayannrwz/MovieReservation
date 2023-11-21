@@ -15,10 +15,12 @@ function SetSeatLayout() {
   );
 
   const updateSeat = (data) => {
+    // console.log(data);
     const seatsData = [...seats];
-    seatsData[data.rowCol.row][data.rowCol.col] = !seatsData[data.rowCol.row][data.rowCol.col];
-    console.log(data);
-    const existingIndex = cell.findIndex(item => item.row === data.rowCol.row && item.col === data.rowCol.col);
+    seatsData[data.rowCol.row][data.rowCol.col] =
+      !seatsData[data.rowCol.row][data.rowCol.col];
+    const existingIndex = cell.findIndex((item) => item === data.id);
+    // console.log(existingIndex);
     if (existingIndex !== -1) {
       const updatedCell = [...cell];
       updatedCell.splice(existingIndex, 1);
@@ -30,6 +32,7 @@ function SetSeatLayout() {
   };
 
   // console.log(seats);
+  // console.log(cell);
 
   return (
     <div className="seats-layout-container">
@@ -49,11 +52,12 @@ function SetSeatLayout() {
         <Col md={5}>
           <div>
             <h4>Booking Information</h4>
-            {cell.map((rowCol, index) => (
-              <p key={index}>
-                {rowCol}:{rowCol}
-              </p>
-            ))}
+            <div className="reserved-seats-list">
+              <h4>Seats: </h4>
+              {cell.map((rowCol, index) => (
+                <p key={index}>{rowCol}{index === cell.length - 1 ? "" : ","}</p>
+              ))}
+            </div>
           </div>
         </Col>
       </Row>

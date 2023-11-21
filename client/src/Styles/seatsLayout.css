@@ -33,3 +33,7 @@
   background-color: rgb(229, 229, 229);
   color: white;
 }
+
+.reserved-seats-list{
+  display: flex;
+}
