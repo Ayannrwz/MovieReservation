@@ -16,15 +16,15 @@ function SetSeatLayout() {
 
   const updateSeat = (data) => {
     const seatsData = [...seats];
-    seatsData[data.row][data.col] = !seatsData[data.row][data.col];
+    seatsData[data.rowCol.row][data.rowCol.col] = !seatsData[data.rowCol.row][data.rowCol.col];
     console.log(data);
-    const existingIndex = cell.findIndex(item => item.row === data.row && item.col === data.col);
+    const existingIndex = cell.findIndex(item => item.row === data.rowCol.row && item.col === data.rowCol.col);
     if (existingIndex !== -1) {
       const updatedCell = [...cell];
       updatedCell.splice(existingIndex, 1);
       setCell(updatedCell);
     } else {
-      setCell([...cell, data]);
+      setCell([...cell, data.id]);
     }
     setSeats(seatsData);
   };
@@ -51,7 +51,7 @@ function SetSeatLayout() {
             <h4>Booking Information</h4>
             {cell.map((rowCol, index) => (
               <p key={index}>
-                {rowCol.row}:{rowCol.col}
+                {rowCol}:{rowCol}
               </p>
             ))}
           </div>

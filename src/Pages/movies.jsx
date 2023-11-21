@@ -28,7 +28,7 @@ function Movies() {
       <div className="movies-section">
         <Row className="justify-content-center"> 
         {movies.map((movie, index) => (
-            <MovieCard key={index} movieData={movie} />
+            <MovieCard key={index} movieDetails={movie} />
         ))}
         </Row>
       </div>
