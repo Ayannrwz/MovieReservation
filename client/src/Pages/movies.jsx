@@ -14,14 +14,16 @@ function Movies() {
   const currentDate = new Date();
   const [selectedDate, setSelectedDate] = useState(currentDate);
   const [movieList, setMovieList] = useState([]);
-  const movie = useMovies();
   const [state, setState] = useState([]);
+  const [showLoading, setShowLoading] = useState(true);
 
   const fetchTrending = async () => {
     const data = await fetch(`
 https://api.themoviedb.org/3/trending/all/day?api_key=ccf711f2e7a3eadbcc4f8d010b633d4e`);
     const dataJ = await data.json();
     setState(dataJ.results);
+    setMovieList(dataJ.results);
+    setShowLoading(false);
   };
 
   useEffect(() => {
@@ -29,19 +31,23 @@ https://api.themoviedb.org/3/trending/all/day?api_key=ccf711f2e7a3eadbcc4f8d010b
   }, []);
 
   const handleDateChange = (date) => {
-    const filteredList = movie.filter((movie) =>
-      movie.date.toLowerCase().includes(FormatDate(date))
-    );
+    const selectedDate = date ? new Date(date) : null;
+    const formattedDate = selectedDate ? format(selectedDate, "yyyy-MM-dd") : null;
+  
+    if (!formattedDate) {
+      setMovieList(state);
+      setSelectedDate(null);
+      return;
+    }
+  
+    const filteredList = state.filter((movie) => {
+      return movie.release_date && movie.release_date.includes(formattedDate);
+    });
 
     setMovieList(filteredList);
     setSelectedDate(date);
+    // setShowLoading(false);
   };
-
-  useEffect(() => {
-    setMovieList(movie);
-  }, []);
-
-  console.log(state);
 
   return (
     <Stack className="stack-container">
@@ -59,13 +65,13 @@ https://api.themoviedb.org/3/trending/all/day?api_key=ccf711f2e7a3eadbcc4f8d010b
       </div>
       <div className="movies-section">
         <Row className="justify-content-center">
-          {state.length == 0 ? (
-            <h1>Nothing to display</h1>
+          {showLoading ? (<Spin tip="Loading" size="large"></Spin>) : (movieList.length == 0 ? (
+            <h2>No data Available</h2>
           ) : (
-            state.map((movie, index) => (
+            movieList.map((movie, index) => (
               <MovieCard key={index} movieDetails={movie} />
             ))
-          )}
+          ))}
         </Row>
       </div>
     </Stack>

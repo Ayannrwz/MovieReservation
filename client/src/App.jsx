@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Movies from "./Pages/movies";
 import CancelTicket from "./Pages/cancel_ticket";
 import SetSeatLayout from "./Components/SeatLayouts/set_seat_layout";
+import NormalLoginForm from "./Components/Authentication/login";
 
 import "./Styles/index.css";
 
@@ -12,6 +13,7 @@ function App() {
     <Router>
       <NavigationComponent />
       <Routes>
+       <Route path="/login" element={<NormalLoginForm />} />
         <Route path="/" element={<Movies />} />
         <Route path="/cancelticket" element={<CancelTicket />} />
         <Route path="/:id" element={<SetSeatLayout />} />
