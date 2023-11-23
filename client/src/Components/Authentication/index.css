@@ -1,13 +1,25 @@
-Form{
-
-}
-
-.login-form {
-    max-width: 300px;
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f2f5; /* Set a background color if needed */
   }
+  
+  .login-form {
+    max-width: 300px; /* Adjust the max-width as needed */
+    width: 100%;
+    padding: 16px;
+    background-color: #fff; /* Set a background color if needed */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a box shadow for a subtle effect */
+  }
+  
   .login-form-forgot {
     float: right;
   }
+  
   .login-form-button {
     width: 100%;
   }
