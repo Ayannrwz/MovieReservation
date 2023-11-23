@@ -4,16 +4,16 @@ body {
     justify-content: center;
     height: 100vh;
     margin: 0;
-    background-color: #f0f2f5; /* Set a background color if needed */
+    background-color: #f0f2f5; 
   }
   
   .login-form {
-    max-width: 300px; /* Adjust the max-width as needed */
+    max-width: 300px; 
     width: 100%;
     padding: 16px;
-    background-color: #fff; /* Set a background color if needed */
+    background-color: #fff; 
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a box shadow for a subtle effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
   }
   
   .login-form-forgot {
