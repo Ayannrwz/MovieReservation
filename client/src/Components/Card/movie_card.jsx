@@ -72,11 +72,6 @@ function MovieCard({movieDetails, isLoading}) {
           src={movieDetails.poster_path ? `${img_300}/${movieDetails.poster_path}` : unavailable}
         />
       }
-      actions={[
-        <SettingOutlined key="setting" />,
-        <EditOutlined key="edit" />,
-        <EllipsisOutlined key="ellipsis" />,
-      ]}
       id="card"
     >
       <Meta
