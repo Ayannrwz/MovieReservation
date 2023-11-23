@@ -13,6 +13,7 @@ function SetSeatLayout() {
       .fill(0)
       .map(() => Array(5).fill(false))
   );
+  const img_300 = "https://image.tmdb.org/t/p/w300";
 
   const updateSeat = (data) => {
     // console.log(data);
@@ -38,6 +39,10 @@ function SetSeatLayout() {
     <div className="seats-layout-container">
       <Row>
         <Col md={3}>
+        <img
+          alt="example"
+          src={`${img_300}/${data.poster_path}`}
+        />
           <h2>{data.title}</h2>
           <p>Duuration: {data.duration}</p>
           <p>Cinema: {data.cinema}</p>

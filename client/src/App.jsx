@@ -12,7 +12,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Movies />} />
         <Route path="/cancelticket" element={<CancelTicket />} />
-
         <Route path="/:id" element={<SetSeatLayout />} />
       </Routes>
     </Router>

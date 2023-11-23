@@ -6,7 +6,7 @@ const FormatDate = (inputDate) => {
     const year = date.getFullYear();
     // console.log(month,day,year);
   
-    return `${month}-${day}-${year}`;
+    return `${year}-${month}-${day}`;
   }
 
   export default FormatDate;

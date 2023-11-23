@@ -1,22 +1,33 @@
 import { useEffect, useState } from "react";
 import { Col, Row, Stack } from "react-bootstrap";
 import { useMovies } from "../Data/movie_data";
-import MovieCard from "../Components/movie_card";
-import FormatDate from "../Components/data_format";
+import FormatDate from "../Components/Utils/data_format";
 import { DatePicker } from "antd";
+import MovieCard from "../Components/Card/movie_card";
 
 function Movies() {
   const currentDate = new Date();
   const [selectedDate, setSelectedDate] = useState(currentDate);
   const [movieList, setMovieList] = useState([]);
   const movie = useMovies();
+  const [state, setState] = useState([]);
+
+  const fetchTrending = async () => {
+    const data = await fetch(`
+https://api.themoviedb.org/3/trending/all/day?api_key=ccf711f2e7a3eadbcc4f8d010b633d4e`);
+    const dataJ = await data.json();
+    setState(dataJ.results);
+  };
+
+  useEffect(() => {
+    fetchTrending();
+  }, []);
 
   const handleDateChange = (date) => {
     const filteredList = movie.filter((movie) =>
       movie.date.toLowerCase().includes(FormatDate(date))
     );
 
-    // console.log(FormatDate(date));
     setMovieList(filteredList);
     setSelectedDate(date);
   };
@@ -24,6 +35,8 @@ function Movies() {
   useEffect(() => {
     setMovieList(movie);
   }, []);
+
+  console.log(state);
 
   return (
     <Stack>
@@ -40,10 +53,10 @@ function Movies() {
       </div>
       <div className="movies-section">
         <Row className="justify-content-center">
-          {movieList.length == 0 ? (
+          {state.length == 0 ? (
             <h1>Nothing to display</h1>
           ) : (
-            movieList.map((movie, index) => (
+            state.map((movie, index) => (
               <MovieCard key={index} movieDetails={movie} />
             ))
           )}
