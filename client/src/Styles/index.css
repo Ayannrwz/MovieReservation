@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 /** Navigation Bar **/
@@ -25,7 +26,50 @@
   border-radius: 10px;
 }
 
-.movie-card h1{
-  font-size: 14px;
+.card-movie{
+  width: 100px;
+}
 
+.filter-section {
+  padding: 20px 0px;
+  margin-left: auto;
+  margin-right: 30px;
+}
+
+.movie-date-picker {
+  width: 285px;
+}
+
+.movie-date-picker input {
+  text-align: center;
+}
+
+.stack-container {
+  background-color: #303030;
+}
+
+#card {
+  width: 350px;
+  margin: 10px;
+  background-color: #454545;
+  border: none;
+}
+
+#card-information .ant-card-meta-description {
+  color: #e8e8e8;
+}
+
+#card-information .ant-card-meta-title {
+  color: #e8e8e8;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+#card .ant-card-actions > li > span .anticon{
+  color: white;
+}
+
+#card .ant-card-actions {
+  background-color: #303030;
+  border: none;
 }

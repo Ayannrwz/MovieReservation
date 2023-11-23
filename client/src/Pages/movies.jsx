@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
 import { Col, Row, Stack } from "react-bootstrap";
 import { useMovies } from "../Data/movie_data";
-import FormatDate from "../Components/Utils/data_format";
 import { DatePicker } from "antd";
+
+import FormatDate from "../Components/Utils/data_format";
 import MovieCard from "../Components/Card/movie_card";
+
+import "../Styles/index.css";
+
+
 
 function Movies() {
   const currentDate = new Date();
@@ -39,14 +44,15 @@ https://api.themoviedb.org/3/trending/all/day?api_key=ccf711f2e7a3eadbcc4f8d010b
   console.log(state);
 
   return (
-    <Stack>
-      <div className="filter-section text-center">
+    <Stack className="stack-container">
+      <div className="filter-section">
         <Row>
           <Col>
             <DatePicker
               selected={selectedDate}
               onChange={handleDateChange}
               dateFormat="dd/MM/yyyy"
+              className="movie-date-picker"
             />
           </Col>
         </Row>

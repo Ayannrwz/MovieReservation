@@ -7,6 +7,8 @@ import {
 } from "@ant-design/icons";
 import { Avatar, Card } from "antd";
 
+import "../../Styles/index.css";
+
 const { Meta } = Card;
 
 function MovieCard({movieDetails}) {
@@ -21,7 +23,6 @@ function MovieCard({movieDetails}) {
   return (
     <Card
       onClick={handleCardClick}
-      style={{ width: 300 }}
       cover={
         <img
           alt="example"
@@ -33,11 +34,10 @@ function MovieCard({movieDetails}) {
         <EditOutlined key="edit" />,
         <EllipsisOutlined key="ellipsis" />,
       ]}
+      id="card"
     >
       <Meta
-        avatar={
-          <Avatar src={movieDetails.poster_path ? `${img_300}/${movieDetails.poster_path}` : unavailable}/>
-        }
+        id="card-information"
         title={movieDetails.title ? movieDetails.title : movieDetails.name}
         description={movieDetails.overview}
       />

@@ -5,6 +5,8 @@ import Movies from "./Pages/movies";
 import CancelTicket from "./Pages/cancel_ticket";
 import SetSeatLayout from "./Components/SeatLayouts/set_seat_layout";
 
+import "./Styles/index.css";
+
 function App() {
   return (
     <Router>
