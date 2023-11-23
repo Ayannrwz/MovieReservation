@@ -6,6 +6,8 @@ import CancelTicket from "./Pages/cancel_ticket";
 import SetSeatLayout from "./Components/SeatLayouts/set_seat_layout";
 import NormalLoginForm from "./Components/Authentication/login";
 
+import "./Styles/index.css";
+
 function App() {
   return (
     <Router>

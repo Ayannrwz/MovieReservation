@@ -7,6 +7,8 @@ import {
 } from "@ant-design/icons";
 import { Avatar, Card, Skeleton } from "antd";
 
+import "../../Styles/index.css";
+
 const { Meta } = Card;
 
 const truncateOverview = (overview, limit = 40) => {
@@ -64,7 +66,6 @@ function MovieCard({movieDetails, isLoading}) {
   return (
     <Card
       onClick={handleCardClick}
-      style={{ width: 300 }}
       cover={
         <img
           alt="example"
@@ -76,11 +77,10 @@ function MovieCard({movieDetails, isLoading}) {
         <EditOutlined key="edit" />,
         <EllipsisOutlined key="ellipsis" />,
       ]}
+      id="card"
     >
       <Meta
-        avatar={
-          <Avatar src={movieDetails.poster_path ? `${img_300}/${movieDetails.poster_path}` : unavailable}/>
-        }
+        id="card-information"
         title={movieDetails.title ? movieDetails.title : movieDetails.name}
         description={truncateOverview(movieDetails.overview)}
       />
