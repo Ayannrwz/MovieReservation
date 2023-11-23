@@ -9,8 +9,6 @@ const NormalLoginForm = () => {
     console.log("Received values of form: ", values);
   };
 
-  // bobo ka
-
   return (
     <div className="authen-container">
       <div class="background">
@@ -61,8 +59,9 @@ const NormalLoginForm = () => {
           <Form.Item  name="remember" valuePropName="checked" noStyle>
             <Checkbox>Remember me</Checkbox>
           </Form.Item>
-
-       
+          {/* <a className="login-form-forgot" href="">
+            Forgot password
+          </a> */}
         </Form.Item>
 
         <Form.Item>
@@ -73,7 +72,7 @@ const NormalLoginForm = () => {
           >
             Log in
           </Button>
-         
+          {/* Or <a href="">register now</a> */}
         </Form.Item>
         </div>
       </Form>
