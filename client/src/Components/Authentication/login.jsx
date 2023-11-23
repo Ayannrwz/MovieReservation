@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'antd/dist/antd.css';
-import './index.css';
+// import 'antd/dist/antd.css';
+import './index.css'
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
@@ -65,4 +65,5 @@ const NormalLoginForm = () => {
   );
 };
 
-ReactDOM.render(<NormalLoginForm />, document.getElementById('container'));
+export default NormalLoginForm;
+// ReactDOM.render(<NormalLoginForm />, document.getElementById('container'));
