@@ -72,6 +72,7 @@ form h3{
     line-height: 42px;
     text-align: center;
     margin-top: 55px;
+    margin-bottom:35px;
 }
 
 label{
@@ -132,9 +133,7 @@ button{
     max-width: 500px; 
     width: 100%;
     padding: 16px;
-    /* background-color: #fff; 
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  */
+
 }
 
 .log-form-forget{
