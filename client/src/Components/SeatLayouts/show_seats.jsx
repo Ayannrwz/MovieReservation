@@ -1,5 +1,5 @@
 import { Stack } from "react-bootstrap";
-import "../Styles/seatsLayout.css";
+import "../../Styles/seatsLayout.css";
 import SeatID from "./seatID";
 
 function ShowSeats({ seatData, rowColData }) {

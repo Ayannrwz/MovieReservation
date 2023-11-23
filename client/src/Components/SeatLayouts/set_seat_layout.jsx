@@ -4,7 +4,7 @@ import { useLocation, useParams } from "react-router-dom";
 import { Col, Row, Stack } from "react-bootstrap";
 
 function SetSeatLayout() {
-  const { id } = useParams();
+  // const { id } = useParams();
   const location = useLocation();
   const { data } = location.state;
   const [cell, setCell] = useState([]);

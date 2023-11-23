@@ -38,9 +38,8 @@ function MovieCard({movieDetails}) {
         avatar={
           <Avatar src={movieDetails.poster_path ? `${img_300}/${movieDetails.poster_path}` : unavailable}/>
         }
-        // title={movieDetails.title ? movieDetails.title : movieDetails.name}
-        title={movieDetails.original_title}
-        description="This is the description"
+        title={movieDetails.title ? movieDetails.title : movieDetails.name}
+        description={movieDetails.overview}
       />
     </Card>
   );

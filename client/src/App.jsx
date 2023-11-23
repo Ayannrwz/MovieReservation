@@ -1,9 +1,9 @@
 import React from "react";
-import NavigationComponent from "./Components/nav_bar";
+import NavigationComponent from "./Components/Navigations/nav_bar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Movies from "./Pages/movies";
 import CancelTicket from "./Pages/cancel_ticket";
-import SetSeatLayout from "./Components/set_seat_layout";
+import SetSeatLayout from "./Components/SeatLayouts/set_seat_layout";
 
 function App() {
   return (
