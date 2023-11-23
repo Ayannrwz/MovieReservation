@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import "../../Styles/authentication.css";
 import { Form, Input, Button, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
@@ -11,7 +10,7 @@ const NormalLoginForm = () => {
   };
 
   return (
-    <>
+    <div className="authen-container">
       <div class="background">
         <div class="shape"></div>
         <div class="shape"></div>
@@ -80,7 +79,7 @@ const NormalLoginForm = () => {
         </Form.Item>
         </div>
       </Form>
-    </>
+    </div>
   );
 };
 
