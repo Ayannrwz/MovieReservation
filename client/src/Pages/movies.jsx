@@ -26,12 +26,16 @@ https://api.themoviedb.org/3/trending/all/day?api_key=ccf711f2e7a3eadbcc4f8d010b
   }, []);
 
   const handleDateChange = (date) => {
-    // setShowLoading(true);
-    const selectedDate = new Date(date);
-    const formattedDate = format(selectedDate, "yyyy-MM-dd");
+    const selectedDate = date ? new Date(date) : null;
+    const formattedDate = selectedDate ? format(selectedDate, "yyyy-MM-dd") : null;
+  
+    if (!formattedDate) {
+      setMovieList(state);
+      setSelectedDate(null);
+      return;
+    }
+  
     const filteredList = state.filter((movie) => {
-      // const formattedDate = FormatDate(date);
-      console.log(formattedDate, movie.release_date);
       return movie.release_date && movie.release_date.includes(formattedDate);
     });
 
