@@ -1,0 +1,25 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f2f5; 
+  }
+  
+  .login-form {
+    max-width: 300px; 
+    width: 100%;
+    padding: 16px;
+    background-color: #fff; 
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  }
+  
+  .login-form-forgot {
+    float: right;
+  }
+  
+  .login-form-button {
+    width: 100%;
+  }
