@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Col, Row, Stack } from "react-bootstrap";
 import { DatePicker, Spin } from "antd";
 import MovieCard from "../Components/Card/movie_card";
+import { format } from 'date-fns';
 import "../Styles/index.css";
 
 function Movies() {
