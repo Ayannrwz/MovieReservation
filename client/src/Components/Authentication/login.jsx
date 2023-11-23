@@ -57,10 +57,8 @@ const NormalLoginForm = () => {
         </Form.Item>
         <Form.Item>
           <Form.Item  name="remember" valuePropName="checked" noStyle>
-            {/* <Checkbox ><p style={{color:"black"}}>Remember me</p></Checkbox> */}
             <Checkbox>Remember me</Checkbox>
           </Form.Item>
-
           {/* <a className="login-form-forgot" href="">
             Forgot password
           </a> */}
@@ -75,7 +73,6 @@ const NormalLoginForm = () => {
             Log in
           </Button>
           {/* Or <a href="">register now</a> */}
-          
         </Form.Item>
         </div>
       </Form>
@@ -84,4 +81,4 @@ const NormalLoginForm = () => {
 };
 
 export default NormalLoginForm;
-// ReactDOM.render(<NormalLoginForm />, document.getElementById('container'));
+
