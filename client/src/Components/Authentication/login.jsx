@@ -23,7 +23,7 @@ const NormalLoginForm = () => {
         }}
         onFinish={onFinish}
       >
-           <h3>Log in Form</h3>
+           <h3>Log in </h3>
         <div className="log">
      
         <Form.Item
@@ -59,9 +59,6 @@ const NormalLoginForm = () => {
           <Form.Item  name="remember" valuePropName="checked" noStyle>
             <Checkbox>Remember me</Checkbox>
           </Form.Item>
-          {/* <a className="login-form-forgot" href="">
-            Forgot password
-          </a> */}
         </Form.Item>
 
         <Form.Item>
@@ -72,7 +69,6 @@ const NormalLoginForm = () => {
           >
             Log in
           </Button>
-          {/* Or <a href="">register now</a> */}
         </Form.Item>
         </div>
       </Form>
