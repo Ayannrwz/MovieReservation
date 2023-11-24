@@ -15,7 +15,7 @@ function App() {
       <NavigationComponent />
       <Routes>
        <Route path="/login" element={<NormalLoginForm />} />
-       <Route path="/login" element={<NormalSignUpForm />} />
+       <Route path="/signup" element={<NormalSignUpForm />} />
         <Route path="/" element={<Movies />} />
         <Route path="/cancelticket" element={<CancelTicket />} />
         <Route path="/:id" element={<SetSeatLayout />} />
