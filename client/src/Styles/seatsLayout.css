@@ -36,4 +36,9 @@
 
 .reserved-seats-list{
   display: flex;
+  min-height: 200px;
+  border: 1px solid gray;
+  padding: 10px;
+  margin: 20px 0 20px 0;
+  border-radius: 5px;
 }
