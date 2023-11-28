@@ -1,0 +1,60 @@
+
+.background {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to right, #1845ad, #23a2f6, #ff512f, #f09819);
+    position: absolute;
+  }
+  
+    .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+     margin: 0 auto;
+    position: relative; 
+  }  
+  
+  h1 {
+    color: #eaf0fb;
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 80px;
+
+  }
+  
+  .cancel-container {
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.001);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.025);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.15);
+    padding: 50px 35px;
+    width: 400px;
+ 
+  }
+  
+  h3 {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 32px;
+    /* text-align: center; */
+    padding-bottom: 20px;
+  }
+  
+  .ant-input {
+    width: 100%;
+    margin-top: 8px;
+  }
+  
+  .ant-btn-lg {
+    width: 100%;
+    margin-top: 20px;
+    font-size: 18px;
+  }
