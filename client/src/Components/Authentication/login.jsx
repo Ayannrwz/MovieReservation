@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+// import "../../Styles/authentication.css";
 import { Form, Input, Button, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import '@fortawesome/fontawesome-free/css/all.css';
@@ -10,7 +10,7 @@ const NormalLoginForm = () => {
   };
 
   return (
-    <>
+    <div className="authen-container">
       <div class="background">
         <div class="shape"></div>
         <div class="shape"></div>
@@ -23,7 +23,7 @@ const NormalLoginForm = () => {
         }}
         onFinish={onFinish}
       >
-           <h3>Log in Form</h3>
+           <h3>Log in </h3>
         <div className="log">
      
         <Form.Item
@@ -57,13 +57,8 @@ const NormalLoginForm = () => {
         </Form.Item>
         <Form.Item>
           <Form.Item  name="remember" valuePropName="checked" noStyle>
-            {/* <Checkbox ><p style={{color:"black"}}>Remember me</p></Checkbox> */}
             <Checkbox>Remember me</Checkbox>
           </Form.Item>
-
-          <a className="login-form-forgot" href="">
-            Forgot password
-          </a>
         </Form.Item>
 
         <Form.Item>
@@ -74,14 +69,12 @@ const NormalLoginForm = () => {
           >
             Log in
           </Button>
-          Or <a href="">register now</a>
-          
         </Form.Item>
         </div>
       </Form>
-    </>
+    </div>
   );
 };
 
 export default NormalLoginForm;
-// ReactDOM.render(<NormalLoginForm />, document.getElementById('container'));
+

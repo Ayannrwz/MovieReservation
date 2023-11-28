@@ -1,13 +1,9 @@
 import { useEffect, useState } from "react";
 import { Col, Row, Stack } from "react-bootstrap";
-import { useMovies } from "../Data/movie_data";
 import { DatePicker, Spin } from "antd";
-
-import FormatDate from "../Components/Utils/data_format";
 import MovieCard from "../Components/Card/movie_card";
-
-import "../Styles/movies.css"
-
+import { format } from 'date-fns';
+import "../Styles/movies.css";
 
 function Movies() {
   const currentDate = new Date();

@@ -1,47 +1,74 @@
-import { Table } from "antd";
-import { useMovies } from "../Data/movie_data";
-import MenuTest from "../test/menu";
+import React from 'react';
+import { Table, Input, Space } from 'antd';
+import { AudioOutlined } from '@ant-design/icons';
+import { useMovies } from '../Data/movie_data';
+import "../../src/Styles/cancel.css"
 
-function CancelTicket(){
-    const columns = [
-        {
-          title: 'Title',
-          dataIndex: 'title',
-          key: 'title',
-        },
-        {
-          title: 'Date',
-          dataIndex: 'date',
-          key: 'date',
-        },
-        {
-          title: 'Cinema',
-          dataIndex: 'cinema',
-          key: 'cinema',
-        },
-        {
-          title: 'Date',
-          dataIndex: 'date',
-          key: 'date',
-        },
-        {
-          title: 'ID',
-          dataIndex: 'id',
-          key: 'id',
-        },
-        
-        {
-            title: 'Start',
-            dataIndex: 'start',
-            key: 'start',
-          },
-      ];
 
-    return(
-        <div>
-            <h1>Cancel</h1>
-        </div>
-    )
-}
+
+const { Search } = Input;
+
+const CancelTicket = () => {
+  const columns = [
+    {
+      title: 'Title',
+      dataIndex: 'title',
+      key: 'title',
+    },
+    {
+      title: 'Date',
+      dataIndex: 'date',
+      key: 'date',
+    },
+    {
+      title: 'Cinema',
+      dataIndex: 'cinema',
+      key: 'cinema',
+    },
+    {
+      title: 'ID',
+      dataIndex: 'id',
+      key: 'id',
+    },
+    {
+      title: 'Start',
+      dataIndex: 'start',
+      key: 'start',
+    },
+  ];
+
+  const onSearch = (value, _e, info) => console.log(info?.source, value);
+
+  const suffix = (
+    <AudioOutlined
+      style={{
+        fontSize: 300,
+        color: '#1677ff',
+      }}
+    />
+  );
+
+  return (
+    <div>
+      <h1 className='title'>Ticket Cancellation</h1>
+
+<div className="cancel-container">
+  <h3>Input ticket number:</h3>
+    <Space direction="vertical">
+  
+    <Search
+      placeholder="input search text"
+      allowClear
+      enterButton="Search"
+      size="small"
+      onSearch={onSearch}
+    />
+
+    </Space>
+    </div>
+    </div>
+  
+  );
+};
 
 export default CancelTicket;

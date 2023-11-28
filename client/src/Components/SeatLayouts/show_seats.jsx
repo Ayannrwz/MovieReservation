@@ -1,19 +1,20 @@
 import { Stack } from "react-bootstrap";
 import SeatID from "./seatID";
+import { useState } from "react";
 
 function ShowSeats({ seatData, rowColData }) {
-  
-const toggleReservation = (row, col) => {
-  const rowCol = { row: row, col: col };
-  
-  const getColumnID = (col) => {
-    return String.fromCharCode(65 + col);
-  };
+  const [isReserved, setIsReserved] = useState(false);
+  const toggleReservation = (row, col) => {
+    const rowCol = { row: row, col: col };
 
-  const columnID = getColumnID(col);
-  const rowColDataObj = {rowCol, id: `${columnID}${row+1}` };
+    const getColumnID = (col) => {
+      return String.fromCharCode(65 + col);
+    };
 
-  rowColData(rowColDataObj);
+    const columnID = getColumnID(col);
+    const rowColDataObj = { rowCol, id: `${columnID}${row + 1}` };
+
+    rowColData(rowColDataObj);
     // const newSeats = [...seatData];
     // newSeats[row][col] = !newSeats[row][col];
     // updateData(newSeats);
@@ -35,7 +36,7 @@ const toggleReservation = (row, col) => {
                 ) : (
                   <i className="fas fa-user"></i>
                 )} */}
-                <SeatID seatData={{ row: rowIndex+1, col: colIndex}} />
+                <SeatID seatData={{ row: rowIndex + 1, col: colIndex }} />
               </div>
             ))}
           </div>
