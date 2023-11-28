@@ -3,6 +3,9 @@ import { Table, Input, Space } from 'antd';
 import { AudioOutlined } from '@ant-design/icons';
 import { useMovies } from '../Data/movie_data';
 import "../../src/Styles/cancel.css"
+
+
+
 const { Search } = Input;
 
 const CancelTicket = () => {
@@ -39,7 +42,7 @@ const CancelTicket = () => {
   const suffix = (
     <AudioOutlined
       style={{
-        fontSize: 20,
+        fontSize: 300,
         color: '#1677ff',
       }}
     />
@@ -47,26 +50,20 @@ const CancelTicket = () => {
 
   return (
     <div>
-      <h1 className='title'>Cancel Reservation</h1>
+      <h1 className='title'>Ticket Cancellation</h1>
 
 <div className="cancel-container">
   <h3>Input ticket number:</h3>
     <Space direction="vertical">
-      <Search
-        placeholder="input search text"
-        allowClear
-        enterButton="Search"
-        size="large"
-        onSearch={onSearch}
-      />
+  
+    <Search
+      placeholder="input search text"
+      allowClear
+      enterButton="Search"
+      size="small"
+      onSearch={onSearch}
+    />
 
-      {/* <Search
-        placeholder="input search text"
-        enterButton="Search"
-        size="large"
-        suffix={suffix}
-        onSearch={onSearch}
-      /> */}
     </Space>
     </div>
     </div>
