@@ -6,7 +6,7 @@ import CancelTicket from "./Pages/cancel_ticket";
 import SetSeatLayout from "./Components/SeatLayouts/set_seat_layout";
 import NormalLoginForm from "./Components/Authentication/login";
 
-import "./Styles/index.css";
+import "./Styles/main.css"
 
 function App() {
   return (

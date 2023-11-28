@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { Col, Row, Stack } from "react-bootstrap";
 import { useMovies } from "../Data/movie_data";
-import { DatePicker } from "antd";
+import { DatePicker, Spin } from "antd";
 
 import FormatDate from "../Components/Utils/data_format";
 import MovieCard from "../Components/Card/movie_card";
 
-import "../Styles/index.css";
-
+import "../Styles/movies.css"
 
 
 function Movies() {
@@ -51,14 +50,13 @@ https://api.themoviedb.org/3/trending/all/day?api_key=ccf711f2e7a3eadbcc4f8d010b
 
   return (
     <Stack className="stack-container">
-      <div className="filter-section">
+      <div className="movie-datepicker-container">
         <Row>
           <Col>
             <DatePicker
               selected={selectedDate}
               onChange={handleDateChange}
               dateFormat="dd/MM/yyyy"
-              className="movie-date-picker"
             />
           </Col>
         </Row>

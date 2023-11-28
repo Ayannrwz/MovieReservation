@@ -3,6 +3,8 @@ import ShowSeats from "./show_seats";
 import { useLocation, useParams } from "react-router-dom";
 import { Col, Row, Stack } from "react-bootstrap";
 
+import "../../Styles/reserve.css"
+
 function SetSeatLayout() {
   // const { id } = useParams();
   const location = useLocation();
@@ -38,30 +40,36 @@ function SetSeatLayout() {
   return (
     <div className="seats-layout-container">
       <Row>
-        <Col md={3}>
+        <Col md={4} className="movie-details">
         <img
+          className="movie-details-poster"
           alt="example"
           src={`${img_300}/${data.poster_path}`}
         />
+        <div className="movie-details-poster-fade"></div>
+        {/* <div className="movie-details-text-container">
           <h2>{data.title}</h2>
           <p>Duuration: {data.duration}</p>
           <p>Cinema: {data.cinema}</p>
           <p>Date: {data.date}</p>
           <p>Time Start: {data.start}</p>
+        </div> */}
         </Col>
-        <Col md={4}>
+        <Col md={4} className="seat-details">
           <Stack className="align-items-center justify-content-center text-center">
             <ShowSeats seatData={seats} rowColData={updateSeat} />
           </Stack>
         </Col>
-        <Col md={5}>
-          <div>
-            <h4>Booking Information</h4>
+        <Col md={4} className="ticket-details">
+          <div className="ticket-details-inner-container">
+            <h3 className="ticket-details-title">Booking Information</h3>
             <div className="reserved-seats-list">
               <h4>Seats: </h4>
-              {cell.map((rowCol, index) => (
-                <p key={index}>{rowCol}{index === cell.length - 1 ? "" : ","}</p>
-              ))}
+              <div>
+                {cell.map((rowCol, index) => (
+                  <p className="reserved-seats-text" key={index}>{rowCol}{index === cell.length - 1 ? "" : ","}</p>
+                ))}
+              </div>
             </div>
           </div>
         </Col>

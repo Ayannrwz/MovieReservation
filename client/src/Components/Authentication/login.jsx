@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "../../Styles/authentication.css";
 import { Form, Input, Button, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import '@fortawesome/fontawesome-free/css/all.css';

@@ -1,0 +1,103 @@
+.movie-details {
+    position: relative;
+    /* width: 45%; */
+    height: 88vh;
+}
+
+.movie-details-poster {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.movie-details-poster-fade {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(115, 188, 199));
+    pointer-events: none; /* Allow clicks to pass through the overlay to the image */
+}
+
+.movie-details-text-container {
+    background-color: cornsilk;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+    z-index: 1;
+    width: 400px;
+}
+
+.seat-details {
+    background-color: #73bcc7;
+}
+
+.ticket-details {
+    background-color: cornflowerblue;
+    padding-top: 70px;
+}
+  
+.seat-grid {
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+}
+  
+.seat-row {
+    display: flex;
+}
+  
+.seat {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+.reserved {
+    background-color: rgb(109, 109, 109);
+    color: white;
+}
+  
+.available {
+    background-color: rgb(229, 229, 229);
+    color: white;
+}
+
+.ticket-details-inner-container {
+    margin-left: 45px;
+    width: 400px;
+}
+
+.ticket-details-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 30px;
+}
+  
+.reserved-seats-list {
+    background-color: #73bcc7;
+    width: 400px;
+}
+
+.reserved-seats-list h4 {
+    font-size: 20px;
+}
+
+.reserved-seats-text {
+    float: left;
+    margin: 4px 4px;
+}
