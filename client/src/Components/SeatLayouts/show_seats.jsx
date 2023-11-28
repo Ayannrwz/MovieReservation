@@ -3,7 +3,7 @@ import "../../Styles/seatsLayout.css";
 import SeatID from "./seatID";
 import { useState } from "react";
 
-function ShowSeats({ seatData, rowColData}) {
+function ShowSeats({ seatData, rowColData }) {
   const [isReserved, setIsReserved] = useState(false);
   const toggleReservation = (row, col) => {
     const rowCol = { row: row, col: col };
