@@ -1,7 +1,7 @@
 
 import React from "react";
-import "../../Styles/authentication.css";
-import "../../Styles/signup.css"
+// import "../../Styles/authentication.css";
+// import "../../Styles/signup.css"
 import { Form, Input, Button, Checkbox, Select } from "antd";
 import { UserOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
 import "@fortawesome/fontawesome-free/css/all.css";
