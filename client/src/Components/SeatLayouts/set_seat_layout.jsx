@@ -131,6 +131,7 @@ function SetSeatLayout() {
                 )}
               </div>
             <div>
+              {/* THIS IS JUST TO PUSH*/}
               {/* {isInputVAlid ? "" : <p>Input Invalid</p>} */}
               <h4 className="num-senior-label">Number of Seniors:</h4>
               <p className="ticket-details-senior-num-tip">20% discount for every senior citizen</p>
