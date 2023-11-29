@@ -4,6 +4,7 @@ import { AudioOutlined } from "@ant-design/icons";
 import { useMovies } from "../Data/movie_data";
 import "../../src/Styles/cancel.css";
 import TestList from "../test/test";
+import ImageUploadForm from "../test/upload_image";
 
 const { Search } = Input;
 
@@ -64,6 +65,7 @@ const CancelTicket = () => {
         </Space>
       </div> */}
       <TestList/>
+      <ImageUploadForm />
     </div>
   );
 };
