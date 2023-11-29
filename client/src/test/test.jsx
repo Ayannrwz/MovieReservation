@@ -6,14 +6,11 @@ const TestList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:5000/movies');
-        // const response2 = await fetch('http://localhost:5000/tickets');
+        const response = await fetch('http://localhost:5000/api/movies/all');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        // const ticketData = await response2.json();
         const movieData = await response.json();
-        // console.log(ticketData);
         setMovies(movieData);
       } catch (error) {
         console.error('Error fetching data:', error);
