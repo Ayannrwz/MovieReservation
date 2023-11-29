@@ -1,5 +1,5 @@
 import React from "react";
-import NavigationComponent from "./Components/Navigations/nav_bar";
+// import NavigationComponent from "./Components/Navigations/nav_bar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Movies from "./Pages/movies";
 import CancelTicket from "./Pages/cancel_ticket";
@@ -12,7 +12,7 @@ import "./Styles/main.css"
 function App() {
   return (
     <Router>
-      <NavigationComponent />
+      {/* <NavigationComponent /> */}
       <Routes>
        <Route path="/login" element={<NormalLoginForm />} />
        <Route path="/signup" element={<NormalSignUpForm />} />

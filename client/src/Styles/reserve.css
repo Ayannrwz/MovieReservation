@@ -136,8 +136,35 @@
 
 .ant-input-number {
     width: 70px;
+    background-color: #6bbfff22;
+    border: 2px solid #6bbfff;
+}
+
+.ant-input-number-input {
     text-align: center;
-    margin-bottom: 10px;
+    color: #6bbfff !important;
+}
+
+.ant-input-number-handler-wrap {
+    background: #6bbfff2d !important;
+}
+
+.ant-input-number-handler-up {
+    /* border-inline-start: 1px solid #6bbfff !important; */
+    border: none !important;
+}
+
+.ant-input-number-handler-down {
+    /* border-inline-start: 1px solid #6bbfff !important; */
+    border: none !important;
+}
+
+.ant-input-number-handler-up-inner {
+    color: #ffffff !important;
+}
+
+.ant-input-number-handler-down-inner {
+    color: #ffffff !important;
 }
 
 .ant-form-item-control-input-content {

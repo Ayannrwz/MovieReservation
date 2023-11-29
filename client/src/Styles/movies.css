@@ -1,5 +1,42 @@
 /* ---------------------------- START NAV BAR ---------------------------- */
 
+.main-wrapper {
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    perspective: 10px;
+}
+
+.parallax {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75%;
+    transform-style: preserve-3d;
+    z-index: -1;
+}
+
+.parallax-background {
+    transform: translateZ(-20px) scale(4);
+}
+
+.parallax-background, .parallax-foreground {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+#app-title {
+    position: absolute;
+    margin-top: -400px;
+    font-size: 5em;
+    color: #6bbfff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
+    transform: translateZ(-15px) scale(2);
+}
 
 /* ANT DESIGN COMPONENTS STYLING */
 
@@ -48,12 +85,22 @@
 }
 
 .ant-picker-suffix .anticon {
-  color: #6bbfff;
+    color: #6bbfff !important;
+}
+
+.ant-picker-clear .anticon {
+    color: #6bbfff !important;
+}
+
+.ant-picker-clear {
+    background: #47525b !important;
 }
 
 .movies-section {
-    min-height: 100vh;
+    min-height: 110vh;
     background-color: #424242;
+    margin-bottom: 0;
+    padding-bottom: 100px;
 }
 
 #movie-card {
