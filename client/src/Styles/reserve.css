@@ -1,0 +1,165 @@
+.seats-layout-container {
+    overflow-x: hidden;
+}
+
+.movie-details {
+    position: relative;
+    /* background-color: brown; */
+    /* width: 45%; */
+    height: 89.25vh;
+}
+
+.movie-details-poster {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.movie-details-poster-fade {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0), #424242);
+    pointer-events: none; /* Allow clicks to pass through the overlay to the image */
+}
+
+.movie-details-text-container {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+    z-index: 1;
+    width: 400px;
+}
+
+.seat-details {
+    background-color: #424242;
+}
+
+.ticket-details {
+    background-color: #424242;
+    padding-top: 30px;
+}
+  
+.seat-grid {
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+}
+  
+.seat-row {
+    display: flex;
+}
+  
+.seat {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 2px solid #6bbfff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+  
+.reserved {
+    background-color: rgba(0, 0, 0, 0);
+    color: rgba(255, 255, 255, 0.323);
+    border: 2px solid rgba(255, 255, 255, 0.323);
+}
+  
+.available {
+    background-color: #6bbfffad;
+    color: white;
+}
+
+.ticket-details-inner-container {
+    margin-left: 45px;
+    width: 400px;
+}
+
+.ticket-details-title {
+    text-align: center;
+    font-weight: 600;
+    font-size: 30px;
+    color: #6bbfff;
+}
+  
+.reserved-seats-list {
+    background-color: #575757;
+    width: 400px;
+    padding: 40px;
+    border-radius: 8px;
+    /* border: 5px solid #035c9c; */
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+
+}
+
+.reserved-seats-list h4 {
+    clear: both;
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #6bbfff;
+}
+
+.reserved-seats-text {
+    float: left;
+    margin: 4px 4px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.reserved-seats-text-default {
+    margin-bottom: -32px;
+    font-weight: 300;
+    color: #ffffff;
+}
+
+.num-senior-label {
+    margin-top: 150px;
+}
+
+.ticket-details-senior-num-tip {
+    font-weight: 300;
+    color: #ffffff;
+}
+
+.ant-input-number {
+    width: 70px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.ant-form-item-control-input-content {
+    display: flex;
+}
+
+.ticket-total-cost {
+    font-size: 40px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.ticket-book-button {
+    padding: 10px 35px;
+    text-align: center;
+    margin-left: 230px;
+    margin-top: 10px;
+    border-radius: 10px;
+    background-color: #6bbfffad;
+    outline: none;
+    border: 2px solid #6bbfff;
+    color: #ffffff; 
+    font-weight: 600;
+}
+

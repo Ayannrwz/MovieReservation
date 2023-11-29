@@ -1,5 +1,4 @@
 import { Stack } from "react-bootstrap";
-import "../../Styles/seatsLayout.css";
 import SeatID from "./seatID";
 import { useState } from "react";
 
@@ -23,7 +22,6 @@ function ShowSeats({ seatData, rowColData }) {
 
   return (
     <Stack className="d-flex align-items-center justify-content-center text-center">
-      <h2>================</h2>
       <div className="seat-grid">
         {seatData.map((row, rowIndex) => (
           <div key={rowIndex} className="seat-row">

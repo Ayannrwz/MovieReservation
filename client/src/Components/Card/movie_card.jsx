@@ -7,11 +7,9 @@ import {
 } from "@ant-design/icons";
 import { Avatar, Card, Skeleton } from "antd";
 
-import "../../Styles/index.css";
-
 const { Meta } = Card;
 
-const truncateOverview = (overview, limit = 40) => {
+const truncateOverview = (overview, limit = 250) => {
   if (overview.length > limit) {
     return overview.substring(0, limit) + '... See more';
   }
@@ -36,7 +34,7 @@ function MovieCard({movieDetails, isLoading}) {
     return (
       <>
         {/* <Switch checked={!loading} onChange={onChange} /> */}
-        <Card style={{ width: 300, marginTop: 16 }} loading={loading}>
+        <Card loading={loading}>
           <Meta
             avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />}
             title="Card title"
@@ -44,7 +42,6 @@ function MovieCard({movieDetails, isLoading}) {
           />
         </Card>
         <Card
-          style={{ width: 300, marginTop: 16 }}
           actions={[
             <SettingOutlined key="setting" />,
             <EditOutlined key="edit" />,
@@ -68,14 +65,15 @@ function MovieCard({movieDetails, isLoading}) {
       onClick={handleCardClick}
       cover={
         <img
+          id="movie-image"
           alt="example"
           src={movieDetails.poster_path ? `${img_300}/${movieDetails.poster_path}` : unavailable}
         />
       }
-      id="card"
+      id="movie-card"
     >
       <Meta
-        id="card-information"
+        id="movie-card-information"
         title={movieDetails.title ? movieDetails.title : movieDetails.name}
         description={truncateOverview(movieDetails.overview)}
       />

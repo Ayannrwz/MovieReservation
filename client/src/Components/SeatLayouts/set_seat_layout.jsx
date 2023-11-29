@@ -6,6 +6,8 @@ import { Button, Input, Form, InputNumber } from "antd";
 import CurrencyFormat from "../Utils/currency_format";
 import NumericInput from "../Utils/numeric_input";
 
+import "../../Styles/reserve.css";
+
 const validatePrimeNumber = (numSeats, number) => {
 
   if (numSeats >= number) {
@@ -28,7 +30,8 @@ const validatePrimeNumber = (numSeats, number) => {
   };
 };
 
-const tips = "You will receive a 20% discount for each senior citizen";
+const tips =
+  'You will receive a 20% discount for senior citizen';
 
 function SetSeatLayout() {
   // const { id } = useParams();
@@ -97,51 +100,64 @@ function SetSeatLayout() {
   return (
     <div className="seats-layout-container">
       <Row>
-        <Col md={3}>
-          <img alt="example" src={`${img_300}/${data.poster_path}`} />
-          <h2>{data.title ? data.title : data.name}</h2>
-          <p>Overview: {data.overview}</p>
-          <p>First Air Date: {data.first_air_date}</p>
+        <Col md={4} className="movie-details">
+          <img 
+            className="movie-details-poster"
+            alt="example" 
+            src={`${img_300}/${data.poster_path}`} 
+          />
+          <div className="movie-details-poster-fade"/>
         </Col>
-        <Col md={4}>
+        <Col md={4} className="seat-details">
           <Stack className="align-items-center justify-content-center text-center">
             <ShowSeats seatData={seats} rowColData={updateSeat} />
           </Stack>
         </Col>
-        <Col md={5}>
-          <div>
-            <h4>Booking Information</h4>
+        <Col md={4} className="ticket-details">
+          <div className="ticket-details-inner-container">
+            <h3 className="ticket-details-title">Booking Information</h3>
             <div className="reserved-seats-list">
               <h4>Seats: </h4>
-              {hasSeats ? (
-                cell.map((rowCol, index) => (
-                  <p key={index}>
-                    {rowCol}
-                    {index === cell.length - 1 ? "" : ","}
-                  </p>
-                ))
-              ) : (
-                <p>please select your seats</p>
-              )}
-            </div>
+              <div>
+                {hasSeats ? (
+                  cell.map((rowCol, index) => (
+                    <p className="reserved-seats-text" key={index}>
+                      {rowCol}
+                      {index === cell.length - 1 ? "" : ","}
+                    </p>
+                  ))
+                ) : (
+                  <p className="reserved-seats-text-default">please select your seats</p>
+                )}
+              </div>
             <div>
-              <Form.Item
-                validateStatus={validationData.validateStatus}
-                help={validationData.errorMsg || tips}
+              {/* {isInputVAlid ? "" : <p>Input Invalid</p>} */}
+              <h4 className="num-senior-label">Number of Seniors:</h4>
+              <p className="ticket-details-senior-num-tip">20% discount for every senior citizen</p>
+              <Form.Item 
+                  {...formItemLayout}
+                  validateStatus={numSenior.validateStatus}
+                  // help={numSenior.errorMsg || tips}
               >
-                <Input
-                  style={{
-                    width: "100%",
-                  }}
-                  disabled={cell.length <= 0 ? true : false}
-                  value={numSenior}
-                  onChange={handleChange}
-                />
+                <InputNumber value={numSenior} onChange={onNumberChange} />
               </Form.Item>
-              <h4>Total Price</h4>
-              <h5>Php. {CurrencyFormat(totalPrice)}</h5>
+              {/* <input
+                type="text"
+                value={numSenior}
+                onChange={handleNumSeniorChange}
+              /> */}
+              {/* <NumericInput
+                    style={{
+                      width: 120,
+                    }}
+                    value={numSenior}
+                    onChange={setNumSenior}
+                  /> */}
+              <h4>Total Cost:</h4>
+              <h5 className="ticket-total-cost">Php {CurrencyFormat(totalPrice)}</h5>
+              </div>
             </div>
-            <Button block>Checkout</Button>
+            <button className="ticket-book-button">Book Ticket </button>
           </div>
         </Col>
       </Row>
