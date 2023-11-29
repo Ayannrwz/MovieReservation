@@ -6,6 +6,8 @@ import { Button, Input, Form, InputNumber } from "antd";
 import NumericInput from "../Utils/numeric_input";
 import CurrencyFormat from "../Utils/currency_format";
 
+import "../../Styles/reserve.css";
+
 const validatePrimeNumber = (number) => {
   if (number === 11) {
     return {
@@ -110,11 +112,13 @@ function SetSeatLayout() {
   return (
     <div className="seats-layout-container">
       <Row>
-        <Col md={2}>
-          <img alt="example" src={`${img_300}/${data.poster_path}`} />
-          <h2>{data.title ? data.title : data.name}</h2>
-          <p>Overview: {data.overview}</p>
-          <p>First Air Date: {data.first_air_date}</p>
+        <Col md={4} className="movie-details">
+          <img 
+            className="movie-details-poster"
+            alt="example" 
+            src={`${img_300}/${data.poster_path}`} 
+          />
+          <div className="movie-details-poster-fade"/>
         </Col>
         <Col md={4} className="seat-details">
           <Stack className="align-items-center justify-content-center text-center">
@@ -128,42 +132,44 @@ function SetSeatLayout() {
               <h4>Seats: </h4>
               <div>
                 {hasSeats ? (
-                cell.map((rowCol, index) => (
+                  cell.map((rowCol, index) => (
                     <p className="reserved-seats-text" key={index}>
-                    {rowCol}
-                    {index === cell.length - 1 ? "" : ","}
-                  </p>
+                      {rowCol}
+                      {index === cell.length - 1 ? "" : ","}
+                    </p>
                   ))
-              ) : (
-                <p>please select your seats</p>
-              )}
-            </div>
+                ) : (
+                  <p className="reserved-seats-text-default">please select your seats</p>
+                )}
+              </div>
             <div>
               {/* {isInputVAlid ? "" : <p>Input Invalid</p>} */}
-              <Form.Item
-        {...formItemLayout}
-        validateStatus={numSenior.validateStatus}
-        help={numSenior.errorMsg || tips}
-      >
-        <InputNumber value={numSenior} onChange={onNumberChange} />
-      </Form.Item>
+              <h4 className="num-senior-label">Number of Seniors:</h4>
+              <p className="ticket-details-senior-num-tip">20% discount for every senior citizen</p>
+              <Form.Item 
+                  {...formItemLayout}
+                  validateStatus={numSenior.validateStatus}
+                  // help={numSenior.errorMsg || tips}
+              >
+                <InputNumber value={numSenior} onChange={onNumberChange} />
+              </Form.Item>
               {/* <input
                 type="text"
                 value={numSenior}
                 onChange={handleNumSeniorChange}
               /> */}
               {/* <NumericInput
-      style={{
-        width: 120,
-      }}
-      value={numSenior}
-      onChange={setNumSenior}
-    /> */}
-              <h4>Total Price</h4>
-              <h5>Php. {CurrencyFormat(totalPrice)}</h5>
+                    style={{
+                      width: 120,
+                    }}
+                    value={numSenior}
+                    onChange={setNumSenior}
+                  /> */}
+              <h4>Total Cost:</h4>
+              <h5 className="ticket-total-cost">Php {CurrencyFormat(totalPrice)}</h5>
               </div>
             </div>
-            <Button block>Checkout</Button>
+            <button className="ticket-book-button">Book Ticket </button>
           </div>
         </Col>
       </Row>

@@ -3,6 +3,7 @@ import { Col, Row, Stack } from "react-bootstrap";
 import { DatePicker, Spin } from "antd";
 import MovieCard from "../Components/Card/movie_card";
 import { format } from 'date-fns';
+
 import "../Styles/movies.css";
 
 function Movies() {
@@ -50,6 +51,7 @@ https://api.themoviedb.org/3/trending/all/day?api_key=ccf711f2e7a3eadbcc4f8d010b
         <Row>
           <Col>
             <DatePicker
+              id="movie-datepicker"
               selected={selectedDate}
               onChange={handleDateChange}
               dateFormat="dd/MM/yyyy"
