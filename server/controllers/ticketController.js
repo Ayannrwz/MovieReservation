@@ -11,7 +11,7 @@ const getTicketsForMovie = async (req, res) => {
 };
 
 const addTicket = async (req, res) => {
-    const { ticketNumber, movieId, seats } = req.body;
+    const { ticketNumber, movieId, seats, numSenior } = req.body;
     try {
         const ticket = await Ticket.find({ ticketNumber });
         if (ticket.length > 0)
@@ -20,6 +20,7 @@ const addTicket = async (req, res) => {
             ticketNumber,
             movieId,
             seats,
+            numSenior
         });
         res.status(200).json(addedTicket);
     } catch (err) {
