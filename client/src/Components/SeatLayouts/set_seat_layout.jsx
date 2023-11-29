@@ -34,7 +34,6 @@ const tips =
   'You will receive a 20% discount for senior citizen';
 
 function SetSeatLayout() {
-  // const { id } = useParams();
   const location = useLocation();
   const { data } = location.state;
   const [cell, setCell] = useState([]);
@@ -69,12 +68,11 @@ function SetSeatLayout() {
     setSeats(seatsData);
   };
 
-  const handleChange = (e) => {
-    const { value: inputValue } = e.target;
-    const reg = /^-?\d*(\.\d*)?$/;
-    if (reg.test(inputValue) || inputValue === "" || inputValue === "-") {
-      return setNumSenior(inputValue);
+  const handleChange = (num) => {
+    if(num<=cell.length){
+
     }
+    console.log(num);
   };
 
   useEffect(() => {
@@ -131,29 +129,14 @@ function SetSeatLayout() {
                 )}
               </div>
             <div>
-              {/* THIS IS JUST TO PUSH*/}
-              {/* {isInputVAlid ? "" : <p>Input Invalid</p>} */}
               <h4 className="num-senior-label">Number of Seniors:</h4>
               <p className="ticket-details-senior-num-tip">20% discount for every senior citizen</p>
               <Form.Item 
-                  // {...formItemLayout}
                   validateStatus={numSenior.validateStatus}
-                  // help={numSenior.errorMsg || tips}
+                  help={numSenior.errorMsg || tips}
               >
-                <InputNumber value={numSenior} onChange={handleChange} />
+                <InputNumber disabled={(hasSeats ? false : true)} value={numSenior} onChange={handleChange} />
               </Form.Item>
-              {/* <input
-                type="text"
-                value={numSenior}
-                onChange={handleNumSeniorChange}
-              /> */}
-              {/* <NumericInput
-                    style={{
-                      width: 120,
-                    }}
-                    value={numSenior}
-                    onChange={setNumSenior}
-                  /> */}
               <h4>Total Cost:</h4>
               <h5 className="ticket-total-cost">Php {CurrencyFormat(totalPrice)}</h5>
               </div>
