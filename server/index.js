@@ -1,7 +1,18 @@
 const express = require("express");
 const cors = require('cors');
 const mongoose = require("mongoose");
+const multer = require('multer');
 const app = express();
+const upload = multer({ 
+  dest: 'uploads/',
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+      cb(null, true);
+    } else {
+      cb(new Error('Invalid file type. Only JPEG and PNG files are allowed.'), false);
+    }
+  }
+});
 
 app.use(cors());
 app.use(express.json());
@@ -27,18 +38,40 @@ const movieSchema = new mongoose.Schema({
   image: String,
 });
 
+const ticketsSchema = new mongoose.Schema({
+  ticketNumber: String,
+  seats: Array,
+});
+
 const Movie = mongoose.model("Movie", movieSchema);
+const Ticket = mongoose.model("Ticket", ticketsSchema);
 
 app.get("/movies", async (req, res) => {
   try {
     const movies = await Movie.find({});
+    // console.log(movies);
     res.json(movies);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
 
-app.use(express.static("build"));
+app.get("/tickets", async (req, res) => {
+  try {
+    const tickets = await Ticket.find({});
+    // console.log(tickets);
+    res.json(tickets);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+app.post('/upload', upload.single('image'), (req, res) => {
+  const imagePath = req.file.path;
+  res.send('Image uploaded successfully');
+});
+
+app.use(express.static('uploads'));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
