@@ -6,10 +6,10 @@ const app = express();
 const upload = multer({ 
   dest: 'uploads/',
   fileFilter: (req, file, cb) => {
-    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+    if (file.mimetype === 'jpeg' || file.mimetype === 'png') {
       cb(null, true);
     } else {
-      cb(new Error('Invalid file type. Only JPEG and PNG files are allowed.'), false);
+      cb(null, true);
     }
   }
 });
