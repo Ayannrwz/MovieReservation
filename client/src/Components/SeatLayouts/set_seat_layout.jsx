@@ -6,6 +6,8 @@ import { Button, Input, Form, InputNumber } from "antd";
 import CurrencyFormat from "../Utils/currency_format";
 import NumericInput from "../Utils/numeric_input";
 
+import NavigationComponent from "../Navigations/nav_bar";
+
 import "../../Styles/reserve.css";
 
 const validatePrimeNumber = (numSeats, number) => {
@@ -97,6 +99,7 @@ function SetSeatLayout() {
 
   return (
     <div className="seats-layout-container">
+      <NavigationComponent />
       <Row>
         <Col md={4} className="movie-details">
           <img 
@@ -133,7 +136,7 @@ function SetSeatLayout() {
               <p className="ticket-details-senior-num-tip">20% discount for every senior citizen</p>
               <Form.Item 
                   validateStatus={numSenior.validateStatus}
-                  help={numSenior.errorMsg || tips}
+                  // help={numSenior.errorMsg || tips}
               >
                 <InputNumber disabled={(hasSeats ? false : true)} value={numSenior} onChange={handleChange} />
               </Form.Item>
