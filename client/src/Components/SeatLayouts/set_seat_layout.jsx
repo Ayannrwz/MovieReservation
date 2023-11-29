@@ -3,36 +3,35 @@ import ShowSeats from "./show_seats";
 import { useLocation, useParams } from "react-router-dom";
 import { Col, Row, Stack } from "react-bootstrap";
 import { Button, Input, Form, InputNumber } from "antd";
-import NumericInput from "../Utils/numeric_input";
 import CurrencyFormat from "../Utils/currency_format";
+import NumericInput from "../Utils/numeric_input";
 
 import "../../Styles/reserve.css";
 
-const validatePrimeNumber = (number) => {
-  if (number === 11) {
+const validatePrimeNumber = (numSeats, number) => {
+
+  if (numSeats >= number) {
     return {
-      validateStatus: 'success',
+      validateStatus: "success",
       errorMsg: null,
     };
   }
+
+  if (!number) {
+    return {
+      validateStatus: "success",
+      errorMsg: null,
+    };
+  }
+
   return {
-    validateStatus: 'error',
-    errorMsg: null,
+    validateStatus: "error",
+    errorMsg: `number of seniors exceeds the number of seats (${numSeats})`,
   };
-};
-const formItemLayout = {
-  labelCol: {
-    span: 7,
-  },
-  wrapperCol: {
-    span: 12,
-  },
 };
 
 const tips =
   'You will receive a 20% discount for senior citizen';
-
-import "../../Styles/reserve.css"
 
 function SetSeatLayout() {
   // const { id } = useParams();
@@ -42,7 +41,9 @@ function SetSeatLayout() {
   const [hasSeats, setHasSeats] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
   const [numSenior, setNumSenior] = useState("");
-  const [isInputVAlid, setIsInputValid] = useState(true);
+  const [validationData, setValidationData] = useState({});
+  const ticketPrice = 500;
+  const discount = 1 - 0.2;
 
   const [seats, setSeats] = useState(() =>
     Array(8)
@@ -68,45 +69,32 @@ function SetSeatLayout() {
     setSeats(seatsData);
   };
 
-  const onNumberChange = (value) => {
-    setNumSenior({
-      ...validatePrimeNumber(value),
-      value,
-    });
-  };
-
-  const handleNumSeniorChange = (e) => {
-    const val = e.target.value;
-    console.log(cell.length);
-    if (cell.length !== 0) {
-      if (!isNaN(val) && val >= 0) {
-        return setNumSenior(val);
-      }
-      // if (val > cell.length) {
-      //   setNumSenior("");
-      //   return setIsInputValid(false);
-      // }
-      return setNumSenior("");
+  const handleChange = (e) => {
+    const { value: inputValue } = e.target;
+    const reg = /^-?\d*(\.\d*)?$/;
+    if (reg.test(inputValue) || inputValue === "" || inputValue === "-") {
+      return setNumSenior(inputValue);
     }
   };
 
   useEffect(() => {
-    if (cell.length === 0) {
+    const numSen = parseInt(numSenior);
+    const numSeats = cell.length;
+    setTotalPrice(0);
+    if (numSeats === 0) {
       setHasSeats(false);
-      setTotalPrice(0);
     } else {
       setHasSeats(true);
-      const num = parseInt(numSenior);
-      if (num <= cell.length) {
-        const price = cell.length * 500;
-        const discountedPrice = price * 0.2 * num;
-        setTotalPrice(discountedPrice);
-        setIsInputValid(true);
-      } else {
-        setTotalPrice(cell.length * 500);
-        setIsInputValid(false);
+      if(numSen>0 && numSen<=numSeats){
+        const discountedPrice = numSen * ticketPrice * discount;
+        const regularPrice = (numSeats-numSen) * ticketPrice;
+        setTotalPrice(discountedPrice+regularPrice);
+      }else{
+        const regularPrice = numSeats * ticketPrice;
+        setTotalPrice(regularPrice);
       }
     }
+    setValidationData({ ...validatePrimeNumber(numSeats, numSen), numSen });
   }, [cell, numSenior]);
 
   return (

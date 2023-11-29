@@ -38,6 +38,7 @@ const NormalLoginForm = () => {
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
             placeholder="Username"
+            autoComplete="off"
           />
         </Form.Item>
         <Form.Item
@@ -53,6 +54,7 @@ const NormalLoginForm = () => {
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
             placeholder="Password"
+            autoComplete="off"
           />
         </Form.Item>
         <Form.Item>
