@@ -135,11 +135,11 @@ function SetSeatLayout() {
               <h4 className="num-senior-label">Number of Seniors:</h4>
               <p className="ticket-details-senior-num-tip">20% discount for every senior citizen</p>
               <Form.Item 
-                  {...formItemLayout}
+                  // {...formItemLayout}
                   validateStatus={numSenior.validateStatus}
                   // help={numSenior.errorMsg || tips}
               >
-                <InputNumber value={numSenior} onChange={onNumberChange} />
+                <InputNumber value={numSenior} onChange={handleChange} />
               </Form.Item>
               {/* <input
                 type="text"
