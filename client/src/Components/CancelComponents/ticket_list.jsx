@@ -30,10 +30,6 @@ function Tickets() {
         fetchData();
     }, []);
 
-    const showConfirm = () => {
-        
-    };
-
     const handleDelete = (ticketNumber) => {confirm({
         title: `Do you Want to delete ${ticketNumber.ticketNumber}?`,
         icon: <ExclamationCircleFilled />,

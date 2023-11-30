@@ -1,9 +1,11 @@
 const Ticket = require("../models/ticketModel");
 
 const getTicketsForMovie = async (req, res) => {
-    const { ticketNumber } = req.body;
+    const { movieId } = req.body;
+    // console.log(movieId);
     try {
-        const ticket = await Ticket.find({ticketNumber});
+        const ticket = await Ticket.find({ movieId });
+        // console.log(ticket);
         res.json(ticket);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -12,7 +14,7 @@ const getTicketsForMovie = async (req, res) => {
 
 const getTickets = async (req, res) => {
     try {
-        const ticket = await Ticket.find();
+        const ticket = await Ticket.find().sort({ticketNumber : 1});
         res.json(ticket);
     } catch (err) {
         res.status(500).json({ message: err.message });
