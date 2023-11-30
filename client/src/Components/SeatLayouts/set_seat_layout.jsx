@@ -5,32 +5,9 @@ import { Col, Row, Stack } from "react-bootstrap";
 import { Button, Input, Form, InputNumber } from "antd";
 import CurrencyFormat from "../Utils/currency_format";
 import NumericInput from "../Utils/numeric_input";
-
+import validateNumber from "../Utils/validateNumber";
 import NavigationComponent from "../Navigations/nav_bar";
-
 import "../../Styles/reserve.css";
-
-const validatePrimeNumber = (numSeats, number) => {
-
-    if (numSeats >= number) {
-        return {
-            validateStatus: "success",
-            errorMsg: null,
-        };
-    }
-
-    if (!number) {
-        return {
-            validateStatus: "success",
-            errorMsg: null,
-        };
-    }
-
-    return {
-        validateStatus: "error",
-        errorMsg: `number of seniors exceeds the number of seats (${numSeats})`,
-    };
-};
 
 const tips = "You will receive a 20% discount for senior citizen";
 
@@ -42,16 +19,17 @@ function SetSeatLayout() {
     const [totalPrice, setTotalPrice] = useState(0);
     const [numSenior, setNumSenior] = useState("");
     const [validationData, setValidationData] = useState({});
+    const [seatArray, setSeatArray] = useState([]);
+    const [ticketsList, setTicketsList] = useState([]);
     const ticketPrice = 500;
     const discount = 1 - 0.2;
+    const img_300 = "https://image.tmdb.org/t/p/w300";
 
     const [seats, setSeats] = useState(() =>
         Array(8)
             .fill(0)
             .map(() => Array(5).fill(false))
     );
-
-    const img_300 = "https://image.tmdb.org/t/p/w300";
 
     const updateSeat = (data) => {
         const seatsData = [...seats];
@@ -70,7 +48,41 @@ function SetSeatLayout() {
     };
 
     const handleChange = (num) => {
-            setNumSenior(num);
+        setNumSenior(num);
+    };
+
+    const handleAddTicket = async () => {
+        const ticketData = ticketsList[ticketsList.length - 1];
+        // console.log(parseInt(ticketData.ticketNumber) + 1);
+        try {
+            const requestBody = {
+                ticketNumber: parseInt(ticketData.ticketNumber) + 1,
+                movieId: data.id,
+                seats: cell,
+                numSenior: parseInt(numSenior),
+            };
+
+            const response = await fetch(
+                "http://localhost:5000/api/tickets/add",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(requestBody),
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error("Failed to add ticket");
+            }
+
+            const addedTicket = await response.json();
+            ticketsList.push(addedTicket);
+            console.log("Ticket added:", addedTicket);
+        } catch (error) {
+            console.error("Error adding ticket:", error);
+        }
     };
 
     useEffect(() => {
@@ -90,11 +102,36 @@ function SetSeatLayout() {
                 setTotalPrice(regularPrice);
             }
         }
-    
-        setValidationData({ ...validatePrimeNumber(numSeats, numSen), numSen });
+        setValidationData({ ...validateNumber(numSeats, numSen), numSen });
     }, [cell, numSenior]);
 
-    // console.log(validationData);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(
+                    "http://localhost:5000/api/tickets/all"
+                );
+
+                const ticket = await response.json();
+                setTicketsList(ticket);
+
+                for (const item of ticket) {
+                    console.log(item.movieId, data.movieId);
+                    if (item.movieId === data.movieId) {
+                        for (const item2 of item.seats) {
+                            seatArray.push(item2);
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    console.log(ticketsList);
 
     return (
         <div className="seats-layout-container">
@@ -143,9 +180,6 @@ function SetSeatLayout() {
                                 <h4 className="num-senior-label">
                                     Number of Seniors:
                                 </h4>
-                                {/* <p className="ticket-details-senior-num-tip">
-                                    20% discount for every senior citizen
-                                </p> */}
                                 <Form.Item
                                     validateStatus={
                                         validationData.validateStatus
@@ -169,9 +203,12 @@ function SetSeatLayout() {
                                 </h5>
                             </div>
                         </div>
-                        <button className="ticket-book-button">
+                        <Button
+                            className="ticket-book-button"
+                            onClick={handleAddTicket}
+                        >
                             Book Ticket{" "}
-                        </button>
+                        </Button>
                     </div>
                 </Col>
             </Row>
