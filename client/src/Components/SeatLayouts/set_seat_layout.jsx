@@ -133,7 +133,6 @@ function SetSeatLayout() {
               <p className="ticket-details-senior-num-tip">20% discount for every senior citizen</p>
               <Form.Item 
                   validateStatus={numSenior.validateStatus}
-                  help={numSenior.errorMsg || tips}
               >
                 <InputNumber disabled={(hasSeats ? false : true)} value={numSenior} onChange={handleChange} />
               </Form.Item>

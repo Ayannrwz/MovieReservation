@@ -25,7 +25,7 @@ const NormalLoginForm = () => {
         window.location.href = "/";
       } else {
         console.error("Login failed");
-      setError("Login failed. Please check your username and password.");
+      setError("Invalid username and password");
       }
     } catch (error) {
       // Handle network or other errors
