@@ -6,9 +6,11 @@ const {
     addTicket,
     updateTicket,
     deleteTicket,
+    getTickets,
 } = require("../controllers/ticketController");
 
-router.get("/all", getTicketsForMovie);
+router.get("/allByTicket", getTicketsForMovie);
+router.get("/all", getTickets);
 router.post("/add", addTicket);
 router.put("/update", updateTicket);
 router.delete("/delete", deleteTicket);

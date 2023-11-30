@@ -51,7 +51,7 @@ https://api.themoviedb.org/3/trending/all/day?api_key=ccf711f2e7a3eadbcc4f8d010b
   };
 
   return (
-    <div class="main-wrapper">
+    <div className="main-wrapper">
       <NavigationComponent />
       <section className="parallax">
         <img

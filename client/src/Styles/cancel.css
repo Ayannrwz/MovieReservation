@@ -49,6 +49,10 @@ h3 {
   font-size: 18px;
 }
 
+.ticket-table{
+  padding: 20px 70px;
+}
+
 /* .ant-input-group-addon {
     padding: 0px;
     margin:0px;
