@@ -57,7 +57,8 @@ function SetSeatLayout() {
         try {
             const requestBody = {
                 ticketNumber: parseInt(ticketData.ticketNumber) + 1,
-                movieId: data.id,
+                movieId: data._id,
+                // movieId: data.id,
                 seats: cell,
                 numSenior: parseInt(numSenior),
             };
@@ -115,23 +116,36 @@ function SetSeatLayout() {
                 const ticket = await response.json();
                 setTicketsList(ticket);
 
+                const rows = "ABCDE";
+
                 for (const item of ticket) {
-                    console.log(item.movieId, data.movieId);
-                    if (item.movieId === data.movieId) {
+                    if (item.movieId === data._id) {
+                        // console.log(item);
                         for (const item2 of item.seats) {
-                            seatArray.push(item2);
+                            if (!seatArray.includes(item2)) {
+                                // seatArray.push(item2);
+                                const col = rows.indexOf(item2[0]);
+                                const row = parseInt(item2.slice(1)) - 1;
+                                if (row >= 0 && row < 8 && col >= 0 && col < 5) {
+                                    const updatedSeats = [...seats];
+                                    updatedSeats[row][col] = true;
+                                    setSeats(updatedSeats);
+                                }
+                            }
                         }
                     }
                 }
+
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
         };
 
+
         fetchData();
     }, []);
 
-    console.log(ticketsList);
+    // console.log(seatArray);
 
     return (
         <div className="seats-layout-container">
@@ -141,13 +155,14 @@ function SetSeatLayout() {
                     <img
                         className="movie-details-poster"
                         alt="example"
-                        src={`${img_300}/${data.poster_path}`}
+                        src={data.image}
                     />
                     <div className="movie-details-poster-fade" />
                 </Col>
                 <Col md={4} className="seat-details">
                     <Stack className="align-items-center justify-content-center text-center">
                         <ShowSeats seatData={seats} rowColData={updateSeat} />
+                        <ShowSeats seatData={seats} arrayData={setNewSeatsArray} />
                     </Stack>
                 </Col>
                 <Col md={4} className="ticket-details">
