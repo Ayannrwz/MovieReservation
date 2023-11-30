@@ -71,8 +71,28 @@ function SetSeatLayout() {
     const handleChange = (num) => {
         if (num <= cell.length) {
         }
-        console.log(num);
+        // console.log(num);
     };
+
+    useEffect(() => {
+        const numSen = parseInt(numSenior);
+        const numSeats = cell.length;
+        setTotalPrice(0);
+        if (numSeats === 0) {
+            setHasSeats(false);
+        } else {
+            setHasSeats(true);
+            if (numSen > 0 && numSen <= numSeats) {
+                const discountedPrice = numSen * ticketPrice * discount;
+                const regularPrice = (numSeats - numSen) * ticketPrice;
+                setTotalPrice(discountedPrice + regularPrice);
+            } else {
+                const regularPrice = numSeats * ticketPrice;
+                setTotalPrice(regularPrice);
+            }
+        }
+        setValidationData({ ...validatePrimeNumber(numSeats, numSen), numSen });
+    }, [cell, numSenior]);
   
   return (
     <div className="seats-layout-container">
@@ -113,7 +133,7 @@ function SetSeatLayout() {
               <p className="ticket-details-senior-num-tip">20% discount for every senior citizen</p>
               <Form.Item 
                   validateStatus={numSenior.validateStatus}
-                  // help={numSenior.errorMsg || tips}
+                  help={numSenior.errorMsg || tips}
               >
                 <InputNumber disabled={(hasSeats ? false : true)} value={numSenior} onChange={handleChange} />
               </Form.Item>
@@ -127,99 +147,6 @@ function SetSeatLayout() {
       </Row>
     </div>
   );
-    useEffect(() => {
-        const numSen = parseInt(numSenior);
-        const numSeats = cell.length;
-        setTotalPrice(0);
-        if (numSeats === 0) {
-            setHasSeats(false);
-        } else {
-            setHasSeats(true);
-            if (numSen > 0 && numSen <= numSeats) {
-                const discountedPrice = numSen * ticketPrice * discount;
-                const regularPrice = (numSeats - numSen) * ticketPrice;
-                setTotalPrice(discountedPrice + regularPrice);
-            } else {
-                const regularPrice = numSeats * ticketPrice;
-                setTotalPrice(regularPrice);
-            }
-        }
-        setValidationData({ ...validatePrimeNumber(numSeats, numSen), numSen });
-    }, [cell, numSenior]);
-
-    return (
-        <div className="seats-layout-container">
-            <Row>
-                <Col md={4} className="movie-details">
-                    <img
-                        className="movie-details-poster"
-                        alt="example"
-                        src={`${img_300}/${data.poster_path}`}
-                    />
-                    <div className="movie-details-poster-fade" />
-                </Col>
-                <Col md={4} className="seat-details">
-                    <Stack className="align-items-center justify-content-center text-center">
-                        <ShowSeats seatData={seats} rowColData={updateSeat} />
-                    </Stack>
-                </Col>
-                <Col md={4} className="ticket-details">
-                    <div className="ticket-details-inner-container">
-                        <h3 className="ticket-details-title">
-                            Booking Information
-                        </h3>
-                        <div className="reserved-seats-list">
-                            <h4>Seats: </h4>
-                            <div>
-                                {hasSeats ? (
-                                    cell.map((rowCol, index) => (
-                                        <p
-                                            className="reserved-seats-text"
-                                            key={index}
-                                        >
-                                            {rowCol}
-                                            {index === cell.length - 1
-                                                ? ""
-                                                : ","}
-                                        </p>
-                                    ))
-                                ) : (
-                                    <p className="reserved-seats-text-default">
-                                        please select your seats
-                                    </p>
-                                )}
-                            </div>
-                            <div>
-                                <h4 className="num-senior-label">
-                                    Number of Seniors:
-                                </h4>
-                                <p className="ticket-details-senior-num-tip">
-                                    20% discount for every senior citizen
-                                </p>
-                                <Form.Item
-                                    validateStatus={numSenior.validateStatus}
-                                    help={numSenior.errorMsg || tips}
-                                >
-                                    <InputNumber
-                                        disabled={hasSeats ? false : true}
-                                        value={numSenior}
-                                        onChange={handleChange}
-                                    />
-                                </Form.Item>
-                                <h4>Total Cost:</h4>
-                                <h5 className="ticket-total-cost">
-                                    Php {CurrencyFormat(totalPrice)}
-                                </h5>
-                            </div>
-                        </div>
-                        <button className="ticket-book-button">
-                            Book Ticket{" "}
-                        </button>
-                    </div>
-                </Col>
-            </Row>
-        </div>
-    );
 }
 
 export default SetSeatLayout;

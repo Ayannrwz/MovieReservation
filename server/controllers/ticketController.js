@@ -1,9 +1,18 @@
 const Ticket = require("../models/ticketModel");
 
 const getTicketsForMovie = async (req, res) => {
-    const { movieId } = req.body;
+    const { ticketNumber } = req.body;
     try {
-        const ticket = await Ticket.find(movieId);
+        const ticket = await Ticket.find({ticketNumber});
+        res.json(ticket);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+
+const getTickets = async (req, res) => {
+    try {
+        const ticket = await Ticket.find();
         res.json(ticket);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -66,10 +75,10 @@ const updateTicket = async (req, res) => {
 };
 
 const deleteTicket = async (req, res) => {
-    const { movieId } = req.body;
+    const { ticketNumber } = req.body;
 
     try {
-        const deletedTicket = await Ticket.findByIdAndDelete(movieId);
+        const deletedTicket = await Ticket.findOneAndDelete(ticketNumber);
         if (!deletedTicket) {
             return res.status(404).json({ message: "Ticket not found" });
         }
@@ -80,4 +89,10 @@ const deleteTicket = async (req, res) => {
     }
 };
 
-module.exports = { getTicketsForMovie, addTicket, updateTicket, deleteTicket };
+module.exports = {
+    getTicketsForMovie,
+    addTicket,
+    updateTicket,
+    deleteTicket,
+    getTickets,
+};
