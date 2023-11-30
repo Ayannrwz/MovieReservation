@@ -42,10 +42,18 @@ function Movies() {
                   throw new Error("Network response was not ok");
               }
               const movieData = await response.json();
+
+              const currentDate = new Date();
+              console.log(currentDate);
+              const moviesStarted = movieData.filter((movie) => {
+                  const startDate = new Date(movie.startDate);
+              console.log(startDate);
+                  return currentDate <= startDate;
+              });
+
               setShowLoading(false);
-              // console.log(movieData);
-              setState(movieData);
-              setMovieList(movieData);
+              setState(moviesStarted);
+              setMovieList(moviesStarted);
           } catch (error) {
               console.error("Error fetching data:", error);
           }
@@ -53,6 +61,8 @@ function Movies() {
 
       fetchData();
   }, []);
+
+
 
   const handleDateChange = (date) => {
     const selectedDate = date ? new Date(date) : null;
