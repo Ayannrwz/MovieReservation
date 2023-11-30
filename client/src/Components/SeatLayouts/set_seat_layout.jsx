@@ -9,7 +9,7 @@ import validateNumber from "../Utils/validateNumber";
 import NavigationComponent from "../Navigations/nav_bar";
 import "../../Styles/reserve.css";
 
-const tips = "You will receive a 20% discount for senior citizen";
+const tips = "20% discount for seniors";
 
 function SetSeatLayout() {
     const location = useLocation();

@@ -170,6 +170,29 @@
     display: flex;
 }
 
+.ant-form-item-control-input-content > input {
+    color: #6bbfff;
+    width: 70px;
+    background-color: #6bbfff22;
+    border: 2px solid #6bbfff;
+    text-align: center;
+}
+
+.ant-form-item-control-input-content > input::placeholder {
+    color: #ffffff00;
+}
+
+.ant-form-item-explain-error {
+    margin: 5px 0px 20px 0px;
+    font-weight: 300;
+}
+
+.ant-form-item-explain-success {
+    color: #ffffff;
+    margin: 5px 0px 20px 0px;
+    font-weight: 300;
+}
+
 .ticket-total-cost {
     font-size: 40px;
     font-weight: 600;

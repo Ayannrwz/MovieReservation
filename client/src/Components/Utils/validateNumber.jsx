@@ -15,7 +15,7 @@ const validateNumber = (numSeats, number) => {
 
     return {
         validateStatus: "error",
-        errorMsg: `number of seniors exceeds the number of seats (${numSeats})`,
+        errorMsg: `Seniors exceed reservation: (${numSeats})`,
     };
 };
 
