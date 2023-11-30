@@ -8,8 +8,32 @@ import AuthenticationBackground from "../../assets/movies-authentication-backgro
 import "../../Styles/signup.css"
 
 const NormalLoginForm = () => {
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+  const [error, setError] = React.useState("");
+  const onFinish = async (values) => {
+    try {
+      const response = await fetch("http://localhost:5000/api/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (response.ok) {
+     
+        console.log("Login successful");
+        window.location.href = "/";
+      } else {
+        console.error("Login failed");
+      setError("Login failed. Please check your username and password.");
+      }
+    } catch (error) {
+      // Handle network or other errors
+      console.error("Error:", error);
+
+      // Example: Display a generic error message
+      //  setError("An error occurred. Please try again later.");
+    }
   };
 
   return (
@@ -34,7 +58,7 @@ const NormalLoginForm = () => {
       >
            <h3>LOG IN</h3>
         <div className="log">
-     
+        {error && <div className="error-message">{error}</div>}
         <Form.Item
           name="username"
           rules={[
@@ -82,6 +106,7 @@ const NormalLoginForm = () => {
           </Button>
         </Form.Item>
         </div>
+        
       </Form>
     </div>
   );
