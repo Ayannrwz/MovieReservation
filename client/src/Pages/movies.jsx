@@ -28,6 +28,15 @@ function Movies() {
                   throw new Error("Network response was not ok");
               }
               const movieData = await response.json();
+
+              const currentDate = new Date();
+              console.log(currentDate);
+              const moviesStarted = movieData.filter((movie) => {
+                  const startDate = new Date(movie.startDate);
+              console.log(startDate);
+                  return currentDate <= startDate;
+              });
+
               setShowLoading(false);
               setState(movieData);
               setMovieList(movieData);
@@ -38,6 +47,8 @@ function Movies() {
 
       fetchData();
   }, []);
+
+
 
   const handleDateChange = (date) => {
     const selectedDate = date ? new Date(date) : null;

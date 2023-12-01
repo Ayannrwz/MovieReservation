@@ -9,12 +9,13 @@ import validateNumber from "../Utils/validateNumber";
 import NavigationComponent from "../Navigations/nav_bar";
 import "../../Styles/reserve.css";
 
-const tips = "You will receive a 20% discount for senior citizen";
+const tips = "20% discount for seniors";
 
 function SetSeatLayout() {
     const location = useLocation();
     const { data } = location.state;
     const [cell, setCell] = useState([]);
+    const [selectedSeats, setSelectedSeats] = useState([]);
     const [hasSeats, setHasSeats] = useState(false);
     const [totalPrice, setTotalPrice] = useState(0);
     const [numSenior, setNumSenior] = useState("");
@@ -32,21 +33,24 @@ function SetSeatLayout() {
     );
 
     const updateSeat = (data) => {
-        const seatsData = [...seats];
-        seatsData[data.rowCol.row][data.rowCol.col] =
-            !seatsData[data.rowCol.row][data.rowCol.col];
-        const existingIndex = cell.findIndex((item) => item === data.id);
-        if (existingIndex !== -1) {
-            const updatedCell = [...cell];
-            updatedCell.splice(existingIndex, 1);
-            setCell(updatedCell);
+        const selectedSeat = { row: data.rowCol.row, col: data.rowCol.col };
+        const seatIndex = selectedSeats.findIndex(
+            (seat) =>
+                seat.row === data.rowCol.row && seat.col === data.rowCol.col
+        );
+
+        if (seatIndex !== -1) {
+            const updatedSelectedSeats = [...selectedSeats];
+            updatedSelectedSeats.splice(seatIndex, 1);
+            setSelectedSeats(updatedSelectedSeats);
+            setCell(cell.filter((item) => item !== data.id));
         } else {
+            setSelectedSeats([...selectedSeats, selectedSeat]);
             setCell([...cell, data.id]);
         }
-
         console.log(cell);
-        setSeats(seatsData);
     };
+
 
     const handleChange = (num) => {
         setNumSenior(num);
@@ -54,12 +58,10 @@ function SetSeatLayout() {
 
     const handleAddTicket = async () => {
         const ticketData = ticketsList[ticketsList.length - 1];
-        // console.log(parseInt(ticketData.ticketNumber) + 1);
         try {
             const requestBody = {
                 ticketNumber: parseInt(ticketData.ticketNumber) + 1,
                 movieId: data._id,
-                // movieId: data.id,
                 seats: cell,
                 numSenior: parseInt(numSenior),
             };
@@ -80,11 +82,25 @@ function SetSeatLayout() {
             }
 
             const addedTicket = await response.json();
+            message.success(`${addedTicket.ticketNumber} added`);
+
+            // // Update status of selected seats to true
+            // const updatedSeats = seats.map((row) =>
+            //     row.map((seat) =>
+            //         cell.some(
+            //             (selectedSeat) =>
+            //                 selectedSeat.row === seat.row &&
+            //                 selectedSeat.col === seat.col
+            //         )
+            //             ? { ...seat, status: true }
+            //             : seat
+            //     )
+            // );
+            // setSeats(updatedSeats);
+
+            ticketsList.push(addedTicket);
             setCell([]);
             setNumSenior("");
-            
-            message.success(`${addedTicket.ticketNumber} added`);
-            ticketsList.push(addedTicket);
             console.log("Ticket added:", addedTicket);
         } catch (error) {
             console.error("Error adding ticket:", error);
@@ -125,10 +141,8 @@ function SetSeatLayout() {
 
                 for (const item of ticket) {
                     if (item.movieId === data._id) {
-                        // console.log(item);
                         for (const item2 of item.seats) {
                             if (!seatArray.includes(item2)) {
-                                // seatArray.push(item2);
                                 const col = rows.indexOf(item2[0]);
                                 const row = parseInt(item2.slice(1)) - 1;
                                 if (row >= 0 && row < 8 && col >= 0 && col < 5) {
@@ -149,8 +163,6 @@ function SetSeatLayout() {
 
         fetchData();
     }, []);
-
-    // console.log(seatArray);
 
     return (
         <div className="seats-layout-container">
