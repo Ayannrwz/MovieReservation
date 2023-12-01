@@ -9,12 +9,23 @@ import { Avatar, Card, Skeleton } from "antd";
 
 const { Meta } = Card;
 
-const truncateOverview = (overview, limit = 250) => {
-    if (overview.length > limit) {
-        return overview.substring(0, limit) + "... See more";
-    }
-    return overview;
+const truncateOverview = (dateString) => {
+    const date = new Date(dateString);
+    const formattedDate = new Intl.DateTimeFormat("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+    }).format(date);
+
+    return formattedDate;
 };
+
+// Usage:
+const result = truncateOverview("2023-12-16T05:00:00.000Z");
+console.log(result); // Output: December 16, 2023, 05:00:00
 
 function MovieCard2({ movieDetails, isLoading }) {
     const [loading, setLoading] = useState(true);
@@ -79,7 +90,12 @@ function MovieCard2({ movieDetails, isLoading }) {
             <Meta
                 id="movie-card-information"
                 title={movieDetails.movieTitle}
-                description={truncateOverview(movieDetails.startDate)}
+                description={
+                    <div>
+                        <p>{truncateOverview(movieDetails.startDate)}</p>
+                        <p>Cinema: {movieDetails.cinemaNumber}</p>
+                    </div>
+                }
             />
         </Card>
     );

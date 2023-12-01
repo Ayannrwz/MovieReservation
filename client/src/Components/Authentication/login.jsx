@@ -19,7 +19,7 @@ const NormalLoginForm = () => {
       if (response.ok) {
      
         console.log("Login successful");
-        window.location.href = "/";
+        window.location.href = "/main";
       } else {
         console.error("Login failed");
       setError("Login failed. Please check your username and password.");

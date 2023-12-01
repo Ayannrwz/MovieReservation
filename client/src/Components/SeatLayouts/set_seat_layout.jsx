@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ShowSeats from "./show_seats";
 import { useLocation, useParams } from "react-router-dom";
 import { Col, Row, Stack } from "react-bootstrap";
-import { Button, Input, Form, InputNumber } from "antd";
+import { Button, Input, Form, InputNumber, message } from "antd";
 import CurrencyFormat from "../Utils/currency_format";
 import NumericInput from "../Utils/numeric_input";
 import validateNumber from "../Utils/validateNumber";
@@ -44,6 +44,7 @@ function SetSeatLayout() {
             setCell([...cell, data.id]);
         }
 
+        console.log(cell);
         setSeats(seatsData);
     };
 
@@ -79,6 +80,10 @@ function SetSeatLayout() {
             }
 
             const addedTicket = await response.json();
+            setCell([]);
+            setNumSenior("");
+            
+            message.success(`${addedTicket.ticketNumber} added`);
             ticketsList.push(addedTicket);
             console.log("Ticket added:", addedTicket);
         } catch (error) {
@@ -162,7 +167,7 @@ function SetSeatLayout() {
                 <Col md={4} className="seat-details">
                     <Stack className="align-items-center justify-content-center text-center">
                         <ShowSeats seatData={seats} rowColData={updateSeat} />
-                        <ShowSeats seatData={seats} arrayData={setNewSeatsArray} />
+                        {/* <ShowSeats seatData={seats} arrayData={setNewSeatsArray} /> */}
                     </Stack>
                 </Col>
                 <Col md={4} className="ticket-details">
