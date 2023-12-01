@@ -94,6 +94,7 @@ function MovieCard2({ movieDetails, isLoading }) {
                     <div>
                         <p>{truncateOverview(movieDetails.startDate)}</p>
                         <p>Cinema: {movieDetails.cinemaNumber}</p>
+                        <p>{movieDetails.isPremiere ? "Premiere" : " "}</p>
                     </div>
                 }
             />

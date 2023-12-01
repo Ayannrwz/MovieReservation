@@ -48,9 +48,8 @@ function SetSeatLayout() {
             setSelectedSeats([...selectedSeats, selectedSeat]);
             setCell([...cell, data.id]);
         }
-        console.log(cell);
+        // console.log(cell);
     };
-
 
     const handleChange = (num) => {
         setNumSenior(num);
@@ -116,9 +115,14 @@ function SetSeatLayout() {
         } else {
             setHasSeats(true);
             if (numSen > 0 && numSen <= numSeats) {
-                const discountedPrice = numSen * ticketPrice * discount;
-                const regularPrice = (numSeats - numSen) * ticketPrice;
-                setTotalPrice(discountedPrice + regularPrice);
+                if (data.isPremiere) {
+                    const regularPrice = numSeats * ticketPrice;
+                    setTotalPrice(regularPrice);
+                } else {
+                    const discountedPrice = numSen * ticketPrice * discount;
+                    const regularPrice = (numSeats - numSen) * ticketPrice;
+                    setTotalPrice(discountedPrice + regularPrice);
+                }
             } else {
                 const regularPrice = numSeats * ticketPrice;
                 setTotalPrice(regularPrice);
@@ -145,7 +149,12 @@ function SetSeatLayout() {
                             if (!seatArray.includes(item2)) {
                                 const col = rows.indexOf(item2[0]);
                                 const row = parseInt(item2.slice(1)) - 1;
-                                if (row >= 0 && row < 8 && col >= 0 && col < 5) {
+                                if (
+                                    row >= 0 &&
+                                    row < 8 &&
+                                    col >= 0 &&
+                                    col < 5
+                                ) {
                                     const updatedSeats = [...seats];
                                     updatedSeats[row][col] = true;
                                     setSeats(updatedSeats);
@@ -154,12 +163,10 @@ function SetSeatLayout() {
                         }
                     }
                 }
-
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
         };
-
 
         fetchData();
     }, []);
@@ -224,7 +231,8 @@ function SetSeatLayout() {
                                     }
                                 >
                                     <NumericInput
-                                        disabled={hasSeats ? false : true}
+                                        // disabled={hasSeats ? false : true}
+                                        disabled={data.isPremiere ? true : (hasSeats ? false : true)}
                                         value={numSenior}
                                         onChange={handleChange}
                                     />
@@ -236,6 +244,7 @@ function SetSeatLayout() {
                             </div>
                         </div>
                         <Button
+                            disabled={hasSeats ? false : true}
                             className="ticket-book-button"
                             onClick={handleAddTicket}
                         >
