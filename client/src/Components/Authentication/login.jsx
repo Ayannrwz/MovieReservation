@@ -9,58 +9,61 @@ import AuthenticationBackground from "../../assets/movies-authentication-backgro
 import "../../Styles/signup.css"
 
 const NormalLoginForm = () => {
-  const [error, setError] = React.useState("");
-  const onFinish = async (values) => {
-    try {
-      const response = await fetch("http://localhost:5000/api/users/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      });
+    const [error, setError] = React.useState("");
+    const onFinish = async (values) => {
+        try {
+            const response = await fetch(
+                "http://localhost:5000/api/users/login",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(values),
+                }
+            );
 
-      if (response.ok) {
-     
-        console.log("Login successful");
-        window.location.href = "/";
-      } else {
-        console.error("Login failed");
-      setError("Invalid username and password");
-      }
-    } catch (error) {
-      // Handle network or other errors
-      console.error("Error:", error);
+            if (response.ok) {
+                console.log("Login successful");
+                window.location.href = "/";
+            } else {
+                console.error("Login failed");
+                setError("Invalid username and password");
+            }
+        } catch (error) {
+            // Handle network or other errors
+            console.error("Error:", error);
 
-      // Example: Display a generic error message
-      //  setError("An error occurred. Please try again later.");
-    }
-  };
-
-  return (
-    <div className="authentication-container">
-      <img 
-          src={AuthenticationBackground}
-          alt="Movies Background"
-          className="movies-authentication-background"
-      />
-      <div className="movies-authentication-background-overlay"/>
-      {/* <div className="background">
-        <div className="shape"></div>
-        <div className="shape"></div>
-      </div> */}
-        <Form
-          name="normal_login"
-          className="login-form"
-          initialValues={{
-            remember: true,
-          }}
-          onFinish={onFinish}
-        >
-        <h3>LOG IN</h3>
-        <div className="log">
-        {error && <div className="error-message">{error}</div>}
-        <Form.Item
+            // Example: Display a generic error message
+            //  setError("An error occurred. Please try again later.");
+        }
+    };
+  
+  
+    return (
+        <div className="authentication-container">
+          <img
+            src={AuthenticationBackground}
+            alt="Movies Background"
+            className="movies-authentication-background"
+          />
+          <div className="movies-authentication-background-overlay"/>
+            {/* <div class="background">
+                <div class="shape"></div>
+                <div class="shape"></div>
+            </div> */}
+            <Form
+                name="normal_login"
+                className="login-form"
+                initialValues={{
+                    remember: true,
+                }}
+                onFinish={onFinish}
+            >
+            <h3>LOG IN</h3>
+            <div className="log">
+              {error && <div className="error-message">{error}</div>}
+          <Form.Item
           name="username"
           rules={[
             {
@@ -111,7 +114,6 @@ const NormalLoginForm = () => {
       </Form>
     </div>
   );
-};
+  };
 
-export default NormalLoginForm;
-
+  export default NormalLoginForm;

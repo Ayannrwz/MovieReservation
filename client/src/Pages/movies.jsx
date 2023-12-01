@@ -9,6 +9,7 @@ import parallaxBackground from "../assets/parallax-movie-background.png"
 import parallaxForeground from "../assets/parallax-movie-foreground.png"
 
 import "../Styles/movies.css";
+import MovieCard2 from "../Components/Card/movie_card_mongodb";
 
 function Movies() {
   const currentDate = new Date();
@@ -17,19 +18,51 @@ function Movies() {
   const [state, setState] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
 
-  const fetchTrending = async () => {
-    const data = await fetch(`
-https://api.themoviedb.org/3/trending/all/day?api_key=ccf711f2e7a3eadbcc4f8d010b633d4e`);
-    const dataJ = await data.json();
-    // console.log(dataJ.results);
-    setState(dataJ.results);
-    setMovieList(dataJ.results);
-    setShowLoading(false);
-  };
+//   const fetchTrending = async () => {
+//     const data = await fetch(`
+// https://api.themoviedb.org/3/trending/all/day?api_key=ccf711f2e7a3eadbcc4f8d010b633d4e`);
+//     const dataJ = await data.json();
+//     // console.log(dataJ.results);
+//     setState(dataJ.results);
+//     setMovieList(dataJ.results);
+//     setShowLoading(false);
+//   };
+
+//   useEffect(() => {
+//     fetchTrending();
+//   }, []);
 
   useEffect(() => {
-    fetchTrending();
+      const fetchData = async () => {
+          try {
+              const response = await fetch(
+                  "http://localhost:5000/api/movies/all"
+              );
+              if (!response.ok) {
+                  throw new Error("Network response was not ok");
+              }
+              const movieData = await response.json();
+
+              const currentDate = new Date();
+              console.log(currentDate);
+              const moviesStarted = movieData.filter((movie) => {
+                  const startDate = new Date(movie.startDate);
+              console.log(startDate);
+                  return currentDate <= startDate;
+              });
+
+              setShowLoading(false);
+              setState(moviesStarted);
+              setMovieList(moviesStarted);
+          } catch (error) {
+              console.error("Error fetching data:", error);
+          }
+      };
+
+      fetchData();
   }, []);
+
+
 
   const handleDateChange = (date) => {
     const selectedDate = date ? new Date(date) : null;
@@ -42,7 +75,7 @@ https://api.themoviedb.org/3/trending/all/day?api_key=ccf711f2e7a3eadbcc4f8d010b
     }
   
     const filteredList = state.filter((movie) => {
-      return movie.release_date && movie.release_date.includes(formattedDate);
+      return movie.startDate && movie.startDate.includes(formattedDate);
     });
 
     setMovieList(filteredList);
@@ -86,7 +119,8 @@ https://api.themoviedb.org/3/trending/all/day?api_key=ccf711f2e7a3eadbcc4f8d010b
               <h2>No data Available</h2>
             ) : (
               movieList.map((movie, index) => (
-                <MovieCard key={index} movieDetails={movie} />
+                // <MovieCard key={index} movieDetails={movie} />
+                <MovieCard2 key={index} movieDetails={movie}/>
               ))
             ))}
           </Row>

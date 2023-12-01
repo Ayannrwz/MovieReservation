@@ -22,6 +22,8 @@ const TestList = () => {
         fetchData();
     }, []);
 
+    console.log(movies);
+
     return (
         <div>
             <h1>Movies</h1>
@@ -32,6 +34,7 @@ const TestList = () => {
                         <p>Cinema Number: {movie.cinemaNumber}</p>
                         <p>{movie._id}</p>
                         <p>{movie.startDate}</p>
+                        <img src={movie.image} alt={movie.movieTitle} />
                     </li>
                 ))}
             </ul>
