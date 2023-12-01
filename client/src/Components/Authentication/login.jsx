@@ -38,7 +38,8 @@ const NormalLoginForm = () => {
             //  setError("An error occurred. Please try again later.");
         }
     };
-
+  
+  
     return (
         <div className="authentication-container">
           <img
