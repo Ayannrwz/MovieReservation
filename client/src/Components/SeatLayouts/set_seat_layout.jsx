@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ShowSeats from "./show_seats";
 import { useLocation, useParams } from "react-router-dom";
 import { Col, Row, Stack } from "react-bootstrap";
-import { Button, Input, Form, InputNumber } from "antd";
+import { Button, Input, Form, InputNumber, message } from "antd";
 import CurrencyFormat from "../Utils/currency_format";
 import NumericInput from "../Utils/numeric_input";
 import validateNumber from "../Utils/validateNumber";
@@ -46,9 +46,9 @@ function SetSeatLayout() {
             setCell(cell.filter((item) => item !== data.id));
         } else {
             setSelectedSeats([...selectedSeats, selectedSeat]);
-            console.log(data.id);
             setCell([...cell, data.id]);
         }
+        console.log(cell);
     };
 
 
@@ -82,6 +82,22 @@ function SetSeatLayout() {
             }
 
             const addedTicket = await response.json();
+            message.success(`${addedTicket.ticketNumber} added`);
+
+            // // Update status of selected seats to true
+            // const updatedSeats = seats.map((row) =>
+            //     row.map((seat) =>
+            //         cell.some(
+            //             (selectedSeat) =>
+            //                 selectedSeat.row === seat.row &&
+            //                 selectedSeat.col === seat.col
+            //         )
+            //             ? { ...seat, status: true }
+            //             : seat
+            //     )
+            // );
+            // setSeats(updatedSeats);
+
             ticketsList.push(addedTicket);
             setCell([]);
             setNumSenior("");
@@ -163,6 +179,7 @@ function SetSeatLayout() {
                 <Col md={4} className="seat-details">
                     <Stack className="align-items-center justify-content-center text-center">
                         <ShowSeats seatData={seats} rowColData={updateSeat} />
+                        {/* <ShowSeats seatData={seats} arrayData={setNewSeatsArray} /> */}
                     </Stack>
                 </Col>
                 <Col md={4} className="ticket-details">

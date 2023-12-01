@@ -18,20 +18,6 @@ function Movies() {
   const [state, setState] = useState([]);
   const [showLoading, setShowLoading] = useState(true);
 
-//   const fetchTrending = async () => {
-//     const data = await fetch(`
-// https://api.themoviedb.org/3/trending/all/day?api_key=ccf711f2e7a3eadbcc4f8d010b633d4e`);
-//     const dataJ = await data.json();
-//     // console.log(dataJ.results);
-//     setState(dataJ.results);
-//     setMovieList(dataJ.results);
-//     setShowLoading(false);
-//   };
-
-//   useEffect(() => {
-//     fetchTrending();
-//   }, []);
-
   useEffect(() => {
       const fetchData = async () => {
           try {
@@ -52,8 +38,8 @@ function Movies() {
               });
 
               setShowLoading(false);
-              setState(moviesStarted);
-              setMovieList(moviesStarted);
+              setState(movieData);
+              setMovieList(movieData);
           } catch (error) {
               console.error("Error fetching data:", error);
           }
@@ -80,7 +66,6 @@ function Movies() {
 
     setMovieList(filteredList);
     setSelectedDate(date);
-    // setShowLoading(false);
   };
 
   return (
