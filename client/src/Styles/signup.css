@@ -13,7 +13,7 @@ body {
 }
 
 .movies-authentication-background-overlay {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -36,7 +36,7 @@ body {
     margin-top: 140px;
     padding: 40px;
     border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+    box-shadow: rgb(0, 0, 0) 0px 20px 30px -10px;
 }
 
 .ant-form h3 {
@@ -95,5 +95,5 @@ body {
 
 .ant-btn > span {
     font-weight: 600;
-    color: #ffffff; 
+    color: #ffffff;
 }

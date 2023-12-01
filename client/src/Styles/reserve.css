@@ -1,5 +1,6 @@
 .seats-layout-container {
-    /* overflow-x: hidden; */
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .movie-details {
@@ -18,7 +19,7 @@
 }
 
 .movie-details-poster-fade {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -47,17 +48,17 @@
     background-color: #424242;
     padding-top: 30px;
 }
-  
+
 .seat-grid {
     display: flex;
     flex-direction: column;
     margin-top: 60px;
 }
-  
+
 .seat-row {
     display: flex;
 }
-  
+
 .seat {
     width: 50px;
     height: 50px;
@@ -70,13 +71,13 @@
     justify-content: center;
     font-weight: 600;
 }
-  
+
 .reserved {
     background-color: rgba(0, 0, 0, 0);
     color: rgba(255, 255, 255, 0.323);
     border: 2px solid rgba(255, 255, 255, 0.323);
 }
-  
+
 .available {
     background-color: #6bbfffad;
     color: white;
@@ -92,11 +93,13 @@
     font-weight: 600;
     font-size: 30px;
     color: #6bbfff;
+    margin-bottom: 0px;
 }
-  
+
 .reserved-seats-list {
     background-color: #575757;
     width: 400px;
+    min-height: 20px;
     padding: 30px 40px;
     border-radius: 8px;
     /* border: 5px solid #035c9c; */
@@ -125,7 +128,7 @@
 }
 
 .num-senior-label {
-    margin-top: 200px;
+    margin-top: 190px;
 }
 
 .ticket-details-senior-num-tip {
@@ -208,7 +211,6 @@
     background-color: #6bbfffad;
     outline: none;
     border: 2px solid #6bbfff;
-    color: #ffffff; 
+    color: #ffffff;
     font-weight: 600;
 }
-

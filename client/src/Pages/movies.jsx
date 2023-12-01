@@ -30,10 +30,10 @@ function Movies() {
               const movieData = await response.json();
 
               const currentDate = new Date();
-              console.log(currentDate);
+              // console.log(currentDate);
               const moviesStarted = movieData.filter((movie) => {
                   const startDate = new Date(movie.startDate);
-              console.log(startDate);
+              // console.log(startDate);
                   return currentDate <= startDate;
               });
 

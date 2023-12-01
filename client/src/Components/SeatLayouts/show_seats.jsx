@@ -20,7 +20,7 @@ function ShowSeats({ seatData, rowColData }) {
 
             const columnID = getColumnID(col);
             const rowColDataObj = { rowCol, id: `${columnID}${row + 1}` };
-            console.log(rowColDataObj);
+            // console.log(rowColDataObj);
             rowColData(rowColDataObj);
 
             if (seatIndex > -1) {
