@@ -69,7 +69,11 @@ body {
     margin-top: 0px;
     margin-left: 10px;
     background: none;
-    color: #6bbfff;
+    color: #6bbfff !important;
+}
+
+.ant-input::placeholder {
+    color: #6bbfff !important;
 }
 
 .remember-me-text > span {
