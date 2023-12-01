@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { Form, Input, Button, Checkbox, Select } from "antd";
 import { UserOutlined, LockOutlined, MailOutlined } from "@ant-design/icons";
 
+import AuthenticationBackground from "../../assets/movies-authentication-background.jpg"
+
+import "../../Styles/signup.css"
+
 const { Option } = Select;
 
 const NormalSignUpForm = () => {
@@ -29,12 +33,18 @@ const NormalSignUpForm = () => {
   };
 
   return (
-    <div className="authen-container">
-      <div className="background">
+    <div className="authentication-container">
+      <img 
+          src={AuthenticationBackground}
+          alt="Movies Background"
+          className="movies-authentication-background"
+      />
+      <div className="movies-authentication-background-overlay"/>
+      {/* <div className="background">
         <div className="shape"></div>
         <div className="shape"></div>
-      </div>
-      <div className="forms">
+      </div> */}
+      {/* <div className="forms"> */}
         <Form
           name="normal_signup"
           className="signup-form"
@@ -113,7 +123,7 @@ const NormalSignUpForm = () => {
             </Form.Item>
           </div>
         </Form>
-      </div>
+      {/* </div> */}
     </div>
   );
 };

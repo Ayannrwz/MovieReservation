@@ -3,6 +3,7 @@ import React from "react";
 import { Form, Input, Button, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import '@fortawesome/fontawesome-free/css/all.css';
+
 import AuthenticationBackground from "../../assets/movies-authentication-background.jpg"
 
 import "../../Styles/signup.css"
@@ -48,15 +49,15 @@ const NormalLoginForm = () => {
         <div className="shape"></div>
         <div className="shape"></div>
       </div> */}
-      <Form
-        name="normal_login"
-        className="login-form"
-        initialValues={{
-          remember: true,
-        }}
-        onFinish={onFinish}
-      >
-           <h3>LOG IN</h3>
+        <Form
+          name="normal_login"
+          className="login-form"
+          initialValues={{
+            remember: true,
+          }}
+          onFinish={onFinish}
+        >
+        <h3>LOG IN</h3>
         <div className="log">
         {error && <div className="error-message">{error}</div>}
         <Form.Item
@@ -64,7 +65,7 @@ const NormalLoginForm = () => {
           rules={[
             {
               required: true,
-              message: "Please input your Username",
+              message: "Please input your username",
             },
           ]}
         >
