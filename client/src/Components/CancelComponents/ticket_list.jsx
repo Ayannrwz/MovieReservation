@@ -230,6 +230,12 @@ function Tickets() {
             ),
         },
     ];
-    return <Table columns={columns} dataSource={ticketList} />;
+    return (
+        <Table
+            pagination={{ pageSize: 7 }}
+            columns={columns}
+            dataSource={ticketList}
+        />
+    );
 }
 export default Tickets;

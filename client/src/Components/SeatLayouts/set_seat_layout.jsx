@@ -8,6 +8,10 @@ import NumericInput from "../Utils/numeric_input";
 import validateNumber from "../Utils/validateNumber";
 import NavigationComponent from "../Navigations/nav_bar";
 import "../../Styles/reserve.css";
+import {
+    convertDecimalHoursToHoursMinutes,
+    truncateOverview,
+} from "../Card/movie_card_mongodb";
 
 const tips = "20% discount for seniors";
 
@@ -24,7 +28,6 @@ function SetSeatLayout() {
     const [ticketsList, setTicketsList] = useState([]);
     const ticketPrice = 500;
     const discount = 1 - 0.2;
-    const img_300 = "https://image.tmdb.org/t/p/w300";
 
     const [seats, setSeats] = useState(() =>
         Array(8)
@@ -55,7 +58,10 @@ function SetSeatLayout() {
     };
 
     const handleAddTicket = async () => {
-        const ticketData = ticketsList[ticketsList.length - 1];
+        const ticketData =
+            ticketsList.length !== 0
+                ? ticketsList[ticketsList.length - 1]
+                : 20011;
         try {
             const requestBody = {
                 ticketNumber: parseInt(ticketData.ticketNumber) + 1,
@@ -184,6 +190,12 @@ function SetSeatLayout() {
                 </Col>
                 <Col md={4} className="seat-details">
                     <Stack className="align-items-center justify-content-center text-center">
+                        <p
+                            className="screen-label text-center"
+                            style={{ marginTop: "20px" }}
+                        >
+                            ============Screen============
+                        </p>
                         <ShowSeats seatData={seats} rowColData={updateSeat} />
                         {/* <ShowSeats seatData={seats} arrayData={setNewSeatsArray} /> */}
                     </Stack>
@@ -195,6 +207,7 @@ function SetSeatLayout() {
                         </h3>
                         <div className="reserved-seats-list">
                             <h4>Seats: </h4>
+
                             <div>
                                 {hasSeats ? (
                                     cell.map((rowCol, index) => (
@@ -231,11 +244,26 @@ function SetSeatLayout() {
                                 >
                                     <NumericInput
                                         // disabled={hasSeats ? false : true}
-                                        disabled={data.isPremiere ? true : (hasSeats ? false : true)}
+                                        disabled={
+                                            data.isPremiere
+                                                ? true
+                                                : cell.length != 0
+                                                ? false
+                                                : true
+                                        }
                                         value={numSenior}
                                         onChange={handleChange}
                                     />
                                 </Form.Item>
+                                <p className="movie-details-type-duration">
+                                    {data.isPremiere ? "Premiere" : ""}{" "}
+                                    {convertDecimalHoursToHoursMinutes(
+                                        data.duration
+                                    )}
+                                </p>
+                                <p className="movie-details-date">
+                                    Date: {truncateOverview(data.startDate)}
+                                </p>
                                 <h4>Total Cost:</h4>
                                 <h5 className="ticket-total-cost">
                                     Php {CurrencyFormat(totalPrice)}

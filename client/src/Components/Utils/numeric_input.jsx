@@ -28,7 +28,7 @@ const NumericInput = (props) => {
         ref={inputRef}
         onChange={handleChange}
         onBlur={handleBlur}
-        placeholder="number of senior/s"
+        placeholder="0"
         maxLength={16}
       />
     </Tooltip>

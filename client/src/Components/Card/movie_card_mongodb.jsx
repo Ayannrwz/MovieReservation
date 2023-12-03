@@ -9,7 +9,7 @@ import { Avatar, Card, Skeleton } from "antd";
 
 const { Meta } = Card;
 
-const truncateOverview = (dateString) => {
+export const truncateOverview = (dateString) => {
     const date = new Date(dateString);
     const formattedDate = new Intl.DateTimeFormat("en-US", {
         year: "numeric",
@@ -23,9 +23,15 @@ const truncateOverview = (dateString) => {
     return formattedDate;
 };
 
+export const convertDecimalHoursToHoursMinutes = (decimalHours) => {
+    const hours = Math.floor(decimalHours);
+    const minutes = Math.round((decimalHours - hours) * 60);
+    return `${hours}h ${minutes}m`;
+};
+
 // Usage:
 const result = truncateOverview("2023-12-16T05:00:00.000Z");
-console.log(result); // Output: December 16, 2023, 05:00:00
+// console.log(result); // Output: December 16, 2023, 05:00:00
 
 function MovieCard2({ movieDetails, isLoading }) {
     const [loading, setLoading] = useState(true);
@@ -93,6 +99,12 @@ function MovieCard2({ movieDetails, isLoading }) {
                 description={
                     <div>
                         <p>{truncateOverview(movieDetails.startDate)}</p>
+                        <p>
+                            Duration:{" "}
+                            {
+                                convertDecimalHoursToHoursMinutes(movieDetails.duration)
+                            }
+                        </p>
                         <p>Cinema: {movieDetails.cinemaNumber}</p>
                         <p>{movieDetails.isPremiere ? "Premiere" : " "}</p>
                     </div>
