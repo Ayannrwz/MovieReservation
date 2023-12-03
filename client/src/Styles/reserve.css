@@ -1,5 +1,5 @@
 .seats-layout-container {
-    overflow-x: hidden;
+    overflow-x: auto;
     overflow-y: auto;
 }
 
@@ -44,6 +44,10 @@
     background-color: #424242;
 }
 
+.screen-label {
+    color: #6bbfff;
+}
+
 .ticket-details {
     background-color: #424242;
     padding-top: 30px;
@@ -52,7 +56,7 @@
 .seat-grid {
     display: flex;
     flex-direction: column;
-    margin-top: 60px;
+    margin-top: 40px;
 }
 
 .seat-row {
@@ -196,6 +200,18 @@
     font-weight: 300;
 }
 
+.movie-details-type-duration {
+    color: #6bbfff;
+    font-weight: 300;
+}
+
+.movie-details-date {
+    color: #6bbfff;
+    font-weight: 300;
+    margin-top: -10px;
+    margin-bottom: 30px;
+}
+
 .ticket-total-cost {
     font-size: 40px;
     font-weight: 600;
@@ -205,7 +221,7 @@
 .ticket-book-button {
     padding: 10px 35px;
     text-align: center;
-    margin-left: 230px;
+    margin-left: 245px;
     margin-top: 10px;
     border-radius: 10px;
     background-color: #6bbfffad;

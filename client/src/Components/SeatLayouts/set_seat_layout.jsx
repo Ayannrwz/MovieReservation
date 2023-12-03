@@ -8,7 +8,10 @@ import NumericInput from "../Utils/numeric_input";
 import validateNumber from "../Utils/validateNumber";
 import NavigationComponent from "../Navigations/nav_bar";
 import "../../Styles/reserve.css";
-import { convertDecimalHoursToHoursMinutes, truncateOverview } from "../Card/movie_card_mongodb";
+import {
+    convertDecimalHoursToHoursMinutes,
+    truncateOverview,
+} from "../Card/movie_card_mongodb";
 
 const tips = "20% discount for seniors";
 
@@ -189,7 +192,7 @@ function SetSeatLayout() {
                 <Col md={4} className="seat-details">
                     <Stack className="align-items-center justify-content-center text-center">
                         <p
-                            className="text-center"
+                            className="screen-label text-center"
                             style={{ marginTop: "20px" }}
                         >
                             ============Screen============
@@ -253,13 +256,15 @@ function SetSeatLayout() {
                                         onChange={handleChange}
                                     />
                                 </Form.Item>
-                                <p>
+                                <p className="movie-details-type-duration">
                                     {data.isPremiere ? "Premiere" : ""}{" "}
                                     {convertDecimalHoursToHoursMinutes(
                                         data.duration
                                     )}
                                 </p>
-                                <p>Date: {truncateOverview(data.startDate)}</p>
+                                <p className="movie-details-date">
+                                    Date: {truncateOverview(data.startDate)}
+                                </p>
                                 <h4>Total Cost:</h4>
                                 <h5 className="ticket-total-cost">
                                     Php {CurrencyFormat(totalPrice)}
