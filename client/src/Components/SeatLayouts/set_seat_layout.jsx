@@ -51,7 +51,6 @@ function SetSeatLayout() {
             setSelectedSeats([...selectedSeats, selectedSeat]);
             setCell([...cell, data.id]);
         }
-        // console.log(cell);
     };
 
     const handleChange = (num) => {
