@@ -1,10 +1,7 @@
 const jwt = require("jsonwebtoken");
-
-// used in algorithm for encrypting our data which makes it difficult to decode the information without define secret key.
 const secret = process.env.SECRET;
 
 const createToken = (user) => {
-    // Payload of JWT
     const data = {
         id: user._id,
         username: user.username,
@@ -12,15 +9,12 @@ const createToken = (user) => {
         // role: user.role,
         // isAdmin: user.isAdmin,
     };
-    // Generate a JSON web token using the jwt's sign method
     return jwt.sign(data, secret, { expiresIn: "3d" });
 };
 
 const verify = (req, res, next) => {
     let token = req.headers.authorization;
     try {
-        // Validate the "token" using verify method, to decrypt the token using the secret code.
-
         if (!token) {
             return res.json("Authentication failed! Please login first!");
         }

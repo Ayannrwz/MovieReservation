@@ -21,7 +21,6 @@ const userRoutes = require("./routes/userRoutes");
 app.use(cors());
 app.use(express.json());
 
-app.use(express.static("uploads"));
 app.use("/api/movies", moviesRoutes);
 app.use("/api/tickets", ticketsRoutes);
 app.use("/api/users", userRoutes);
