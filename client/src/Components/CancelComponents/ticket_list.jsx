@@ -1,6 +1,5 @@
 import { ExclamationCircleFilled, SearchOutlined } from "@ant-design/icons";
 import React, { useEffect, useRef, useState } from "react";
-// import Highlighter from "react-highlight-words";
 import { Alert, Button, Input, Modal, Space, Table, message } from "antd";
 
 const { confirm } = Modal;
@@ -56,8 +55,6 @@ function Tickets() {
                 (ticket) => ticket.ticketNumber === ticketNumber.ticketNumber
             );
 
-            // console.log(indexToDelete, ticketNumber.ticketNumber);
-
             if (indexToDelete !== -1) {
                 const updatedList = [...ticketList];
                 updatedList.splice(indexToDelete, 1);
@@ -66,7 +63,6 @@ function Tickets() {
             }
 
             message.success(`${ticketNumber.ticketNumber} deleted successfully`);
-            // console.log(responseData.message);
         } catch (error) {
             console.error("Error deleting ticket:", error);
         }
@@ -184,20 +180,6 @@ function Tickets() {
                 setTimeout(() => searchInput.current?.select(), 100);
             }
         },
-        // render: (text) =>
-        //     searchedColumn === dataIndex ? (
-        //         <Highlighter
-        //             highlightStyle={{
-        //                 backgroundColor: "#ffc069",
-        //                 padding: 0,
-        //             }}
-        //             searchWords={[searchText]}
-        //             autoEscape
-        //             textToHighlight={text ? text.toString() : ""}
-        //         />
-        //     ) : (
-        //         text
-        //     ),
     });
 
     const columns = [
@@ -213,13 +195,11 @@ function Tickets() {
             dataIndex: "seats",
             key: "seats",
             width: "20%",
-            // ...getColumnSearchProps("seats"),
         },
         {
             title: "Movie ID",
             dataIndex: "movieId",
             key: "movieId",
-            // ...getColumnSearchProps("movieId"),
         },
         {
             title: "Action",

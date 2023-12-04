@@ -88,20 +88,6 @@ function SetSeatLayout() {
             const addedTicket = await response.json();
             message.success(`${addedTicket.ticketNumber} added`);
 
-            // // Update status of selected seats to true
-            // const updatedSeats = seats.map((row) =>
-            //     row.map((seat) =>
-            //         cell.some(
-            //             (selectedSeat) =>
-            //                 selectedSeat.row === seat.row &&
-            //                 selectedSeat.col === seat.col
-            //         )
-            //             ? { ...seat, status: true }
-            //             : seat
-            //     )
-            // );
-            // setSeats(updatedSeats);
-
             ticketsList.push(addedTicket);
             setCell([]);
             setNumSenior("");
