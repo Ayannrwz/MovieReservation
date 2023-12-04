@@ -33,6 +33,8 @@ function ShowSeats({ seatData, rowColData }) {
         }
     };
 
+    console.log(seatData, "seatData");
+
     return (
         <Stack className="d-flex align-items-center justify-content-center text-center">
             <div className="seat-grid">
